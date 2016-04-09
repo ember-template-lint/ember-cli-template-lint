@@ -20,6 +20,7 @@ module.exports = function() {
 
           if(AstNodeInfo.isConfigurationHtmlComment(bodyEntry)) {
             // remove the entry
+            // BUG: GJ: this remove the correct comment node, but the comment remains in the output for some reason
             node.body.splice(i, 1);
           }
         }
