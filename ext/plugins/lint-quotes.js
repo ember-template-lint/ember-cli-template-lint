@@ -13,7 +13,7 @@
 
  The following values are valid configuration:
 
-   * boolean -- `false` for disabled
+   * boolean -- `false` for disabled. `true` to enforce any qoutes
    * string -- `single` of `double` for enforce style
  */
 
@@ -31,8 +31,15 @@ module.exports = function(addonContext) {
       return false;
     }
 
+    if (config === true) {
+      return {
+        shouldTestQuoteType: false
+      };
+    }
+
     if (config === SINGLE_QUOTES_NAME || config === DOUBLE_QUOTES_NAME) {
       return {
+        shouldTestQuoteType: true,
         quotesType: config,
         quoteCharacter: config === SINGLE_QUOTES_NAME ? "'" : '"'
       };
@@ -64,8 +71,17 @@ module.exports = function(addonContext) {
     var source = this.sourceForNode(attribute);
     var qouteCharacter = source[source.length - 1];
 
+    if (!this.config.shouldTestQuoteType) {
+      if (qouteCharacter === '"' || qouteCharacter === "'") {
+        return '';
+      } else {
+        return 'Quotes: you should use qoutes for HTML attributes ' +
+          calculateLocationDisplay(this.options.moduleName, attribute.loc.start);
+      }
+    }
+
     if (this.config.quoteCharacter === qouteCharacter) {
-      return;
+      return '';
     }
 
     var undesiredQouteStyle = (
@@ -74,16 +90,21 @@ module.exports = function(addonContext) {
         SINGLE_QUOTES_NAME
     );
 
-    var errorMessage = 'Quotes: you got ' + undesiredQouteStyle +
+    return 'Quotes: you got ' + undesiredQouteStyle +
       ' qoutes for an attribute instead of ' + this.config.quotesType +
       ' qoutes ' + calculateLocationDisplay(this.options.moduleName, attribute.loc.start);
-    this.log(errorMessage);
   };
+
+  function filterEmptyErrorMessage(errorMessage) {
+    return !!errorMessage;
+  }
 
   LogQuotes.prototype.process = function(node) {
     node.attributes
       .filter(filterAttribute)
-      .forEach(this._processAttribute, this);
+      .map(this._processAttribute, this)
+      .filter(filterEmptyErrorMessage)
+      .map(this.log, this);
   };
 
   return LogQuotes;

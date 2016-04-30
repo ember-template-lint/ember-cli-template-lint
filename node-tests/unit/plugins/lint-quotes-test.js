@@ -7,6 +7,9 @@ generateRuleTests({
 
   good: [
     {
+      config: true,
+      template: '<img alt=\'tomster\' src="tomster.png">'
+    }, {
       config: 'double',
       template: '<img alt="tomster" src="tomster.png">'
     }, {
@@ -24,6 +27,10 @@ generateRuleTests({
 
   bad: [
     {
+      config: true,
+      template: '<img alt=tomster>',
+      message: "Quotes: you should use qoutes for HTML attributes (\'layout.hbs\'@ L1:C6)"
+    }, {
       config: 'double',
       template: "<img alt='tomster'>",
       message: "Quotes: you got single qoutes for an attribute instead of double qoutes (\'layout.hbs\'@ L1:C6)"
