@@ -66,12 +66,7 @@ TemplateLinter.prototype.build = function () {
 };
 
 TemplateLinter.prototype.convertErrorToDisplayMessage = function(error) {
-  return [
-    error.message,
-    '@',
-    error.moduleId + 'L' + error.line + ':C' + error.column,
-    'Source: `' + error.source + '`'
-  ].join(' ');
+  return error.message + ' (' + error.moduleId + ' @ L' + error.line + ':C' + error.column + '): `' + error.source;
 };
 
 TemplateLinter.prototype.processString = function(contents, relativePath) {
@@ -82,7 +77,7 @@ TemplateLinter.prototype.processString = function(contents, relativePath) {
   var passed = errors.length === 0;
   var errorDisplay = errors.map(function(error) {
     return this.convertErrorToDisplayMessage(error);
-  });
+  }, this);
 
   var output = this._generateTestFile(
     'TemplateLint - ' + relativePath,
@@ -103,7 +98,7 @@ TemplateLinter.prototype.postProcess = function(results) {
   var errors = results.errors;
 
   for (var i = 0; i < errors.length; i++) {
-    var errorDisplay = this.convertErrorToDisplayMessage(errors);
+    var errorDisplay = this.convertErrorToDisplayMessage(errors[i]);
     this._errors.push(chalk.red(errorDisplay));
   }
 
