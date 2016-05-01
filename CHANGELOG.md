@@ -1,6 +1,12 @@
 Changelog
 =========
 
+## v0.4.0
+
+- Migrate to using [ember-template-lint](https://github.com/rwjblue/ember-template-lint). All existing rules are supported and were migrated to ember-template-lint as the underlying linting engine. ember-cli-template-lint is now an ember-cli specific wrapper around ember-template-lint.
+- Add `deprecate-each-syntax` rule. Prevents usage of `{{#each foo}}` (context shifting each) and `{{#each foo in bar}}`.
+- Add `self-closing-void-elements` rule. Prevents closing void elements (`<input />` will error in favor of `<input>`). See [here](https://github.com/rwjblue/ember-template-lint/blob/master/lib/rules/lint-self-closing-void-elements.js#L24-L39) for a list.
+
 ## v0.3.5
 
 - Update the `bare-strings` rule to allow the following configuration:
