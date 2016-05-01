@@ -30,7 +30,7 @@ module.exports = {
   },
 
   setupPreprocessorRegistry: function(type, registry) {
-    var RemoveConfigurationHtmlComments = require('./ext/plugins/internal/remove-configuration-html-comments');
+    var RemoveConfigurationHtmlComments = require('./lib/plugins/remove-configuration-html-comments');
 
     registry.add('htmlbars-ast-plugin', {
       name: 'remove-configuration-html-comments',

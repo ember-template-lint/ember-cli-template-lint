@@ -38,30 +38,6 @@ describe('broccoli-template-linter', function() {
     cleanupBuilders();
   });
 
-  it('uses .template-lintrc in cwd if present', function() {
-    var basePath = path.join(fixturePath, 'config-in-root');
-    var builder = makeBuilder(basePath);
-    var expected = require(path.join(basePath, '.template-lintrc'));
-
-    return builder('app')
-      .then(function(results) {
-        var linter = results.subject;
-        assert.deepEqual(linter.loadConfig(), expected);
-      });
-  });
-
-  it('uses .template-lintrc in provided templatercPath', function() {
-    var basePath = path.join(fixturePath, 'config-in-root');
-    var builder = makeBuilder(fixturePath);
-    var expected = require(path.join(basePath, '.template-lintrc'));
-
-    return builder('config-in-root/app', { templatercPath: path.join(basePath, '.template-lintrc')})
-      .then(function(results) {
-        var linter = results.subject;
-        assert.deepEqual(linter.loadConfig(), expected);
-      });
-  });
-
   it('uses provided generateTestFile to return a test file', function() {
     var basePath = path.join(fixturePath, 'with-errors');
     var builder = makeBuilder(basePath);
