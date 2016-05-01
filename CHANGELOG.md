@@ -1,6 +1,10 @@
 Changelog
 =========
 
+## v0.4.1
+
+- Error when used with ember-cli versions prior to 2.4.3.
+
 ## v0.4.0
 
 - Migrate to using [ember-template-lint](https://github.com/rwjblue/ember-template-lint). All existing rules are supported and were migrated to ember-template-lint as the underlying linting engine. ember-cli-template-lint is now an ember-cli specific wrapper around ember-template-lint.
