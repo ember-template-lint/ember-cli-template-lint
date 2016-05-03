@@ -72,7 +72,7 @@ TemplateLinter.prototype.convertErrorToDisplayMessage = function(error) {
 TemplateLinter.prototype.processString = function(contents, relativePath) {
   var errors = this.linter.verify({
     source: contents,
-    moduleId: relativePath
+    moduleId: relativePath.slice(0, -4)
   });
   var passed = errors.length === 0;
   var errorDisplay = errors.map(function(error) {

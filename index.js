@@ -4,9 +4,16 @@
 
 var VersionChecker = require('ember-cli-version-checker');
 var TemplateLinter = require('./broccoli-template-linter');
+var PrintFailing = require('./lib/commands/print-failing');
 
 module.exports = {
   name: 'ember-cli-template-lint',
+
+  includedCommands: function() {
+    return {
+      'template-lint:print-failing': PrintFailing
+    };
+  },
 
   lintTree: function(type, tree) {
     var checker = new VersionChecker(this);
