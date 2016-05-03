@@ -8,6 +8,7 @@ var stringify = require('json-stable-stringify');
 var chalk = require('chalk');
 var jsStringEscape = require('js-string-escape');
 var Linter = require('ember-template-lint');
+var debug = require('debug')('template-lint:broccoli');
 
 function TemplateLinter(inputNode, _options) {
   if (!(this instanceof TemplateLinter)) { return new TemplateLinter(inputNode, _options); }
@@ -30,6 +31,8 @@ function TemplateLinter(inputNode, _options) {
     return '';
   };
   this.linter = new Linter(options);
+
+  debug('Linter config: %s', JSON.stringify(this.linter.config));
 }
 
 TemplateLinter.prototype = Object.create(Filter.prototype);
@@ -87,6 +90,8 @@ TemplateLinter.prototype.processString = function(contents, relativePath) {
       errorMessage: relativePath + ' should pass TemplateLint.' + jsStringEscape(errorDisplay)
     }]
   );
+
+  debug('Found %s errors for %s with contents: \n%s', errors.length, relativePath, contents);
 
   return {
     errors: errors,
