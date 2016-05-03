@@ -2,5 +2,5 @@
 'use strict';
 
 module.exports = {
-  extend: 'recommended'
+  extends: 'recommended'
 };
