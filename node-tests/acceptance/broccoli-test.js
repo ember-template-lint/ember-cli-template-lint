@@ -55,8 +55,9 @@ describe('broccoli-template-linter', function() {
           { encoding: 'utf8' }
         );
 
-        assert.ok(contents.indexOf('Here too!') > -1);
-        assert.ok(contents.indexOf('Bare strings are bad') > -1);
+        assert.ok(contents.indexOf('Incorrect indentation for `div`') > -1);
+        assert.ok(contents.indexOf('Incorrect indentation for `p`') > -1);
+        assert.ok(contents.indexOf('HTML comment detected') > -1);
       });
   });
 
@@ -92,8 +93,9 @@ describe('broccoli-template-linter', function() {
       .then(function() {
         var combinedLog = mockConsole._logLines.join('\n');
 
-        assert.ok(combinedLog.indexOf('Here too!') > -1);
-        assert.ok(combinedLog.indexOf('Bare strings are bad') > -1);
+        assert.ok(combinedLog.indexOf('Incorrect indentation for `div`') > -1);
+        assert.ok(combinedLog.indexOf('Incorrect indentation for `p`') > -1);
+        assert.ok(combinedLog.indexOf('HTML comment detected') > -1);
       });
   });
 
