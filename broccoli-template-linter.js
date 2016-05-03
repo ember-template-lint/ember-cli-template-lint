@@ -77,6 +77,9 @@ TemplateLinter.prototype.processString = function(contents, relativePath) {
     source: contents,
     moduleId: relativePath.slice(0, -4)
   });
+  errors = errors.filter(function(error) {
+    return error.severity > 1;
+  });
   var passed = errors.length === 0;
   var errorDisplay = errors.map(function(error) {
     return this.convertErrorToDisplayMessage(error);
