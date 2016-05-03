@@ -1,6 +1,10 @@
 Changelog
 =========
 
+## v0.4.2
+
+- Fix typo in default blueprint that triggers warnings on new installations.
+
 ## v0.4.1
 
 - Error when used with ember-cli versions prior to 2.4.3.
