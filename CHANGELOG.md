@@ -1,6 +1,13 @@
 Changelog
 =========
 
+## v0.4.3
+
+- Add `ember template-lint:print-failing` command to list all templates in `app/` that are currently failing. This command can be
+  used to easily update the `pending` listing in `.template-lintrc.js` so that ember-cli-template-lint can be incorporated into a
+  project immediately (ensuring new templates conform to rules, but providing time to fix older templates).
+- Ensure that modules listed as `pending` in the `.template-lintrc.js` file do not trigger failed tests.
+
 ## v0.4.2
 
 - Fix typo in default blueprint that triggers warnings on new installations.
