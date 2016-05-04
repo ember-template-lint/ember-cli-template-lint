@@ -1,3 +1,3 @@
 module.exports = {
-  'bare-strings': true
+  extends: 'recommended'
 };

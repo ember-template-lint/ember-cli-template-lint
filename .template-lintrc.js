@@ -2,8 +2,9 @@
 'use strict';
 
 module.exports = {
-  'bare-strings': ['(', ')', ',', '.', '&', '+', '-', '=', '*', '/', '#', '%', '!', '?', ':', '[', ']', '{', '}'],
-  'block-indentation': 2,
-  'html-comments': true,
-  'triple-curlies': true
+  extends: 'recommended',
+
+  pending: [
+    'dummy/templates/components/foo-bar'
+  ]
 };
