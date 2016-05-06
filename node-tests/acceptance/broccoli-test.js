@@ -37,8 +37,9 @@ describe('broccoli-template-linter', function() {
   });
 
   afterEach(function() {
-    cleanupBuilders();
     process.chdir(root);
+
+    return cleanupBuilders();
   });
 
   it('uses provided generateTestFile to return a test file', function() {
