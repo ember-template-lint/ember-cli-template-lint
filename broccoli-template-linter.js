@@ -9,6 +9,7 @@ var chalk = require('chalk');
 var jsStringEscape = require('js-string-escape');
 var Linter = require('ember-template-lint');
 var debug = require('debug')('template-lint:broccoli');
+var projectLocalizationAddon = require('./lib/utils/project-localization-framework');
 
 function TemplateLinter(inputNode, _options) {
   if (!(this instanceof TemplateLinter)) { return new TemplateLinter(inputNode, _options); }
@@ -33,6 +34,8 @@ function TemplateLinter(inputNode, _options) {
   this.linter = new Linter(options);
 
   debug('Linter config: %s', JSON.stringify(this.linter.config));
+
+  this.issueLocalizationWarningIfNeeded();
 }
 
 TemplateLinter.prototype = Object.create(Filter.prototype);
@@ -111,6 +114,25 @@ TemplateLinter.prototype.postProcess = function(results) {
   }
 
   return results;
+};
+
+TemplateLinter.prototype.issueLocalizationWarningIfNeeded = function() {
+  if ('bare-strings' in this.linter.config.rules) {
+    return;
+  }
+
+  var project = this.options.project;
+  if (!project) {
+    return;
+  }
+
+  var addon = projectLocalizationAddon(project);
+
+  if (addon) {
+    this._console.log(chalk.yellow(
+      'The `bare-strings` rule must be configured when using a localization framework (`' + addon.name + '`). To prevent this warning, add the following to your `.template-lintrc.js`:\n\n  rules: {\n    \'bare-strings\': true\n  }'
+    ));
+  }
 };
 
 module.exports = TemplateLinter;
