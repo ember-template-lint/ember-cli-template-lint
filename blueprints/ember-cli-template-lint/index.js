@@ -1,4 +1,9 @@
-/*jshint node:true*/
+'use strict';
+/*eslint-env node */
+
+var path = require('path');
+var projectLocalizationFramework = require('../../lib/utils/project-localization-framework');
+
 module.exports = {
   description: 'Generate default configuration for ember-cli-template-lint.',
 
@@ -6,5 +11,21 @@ module.exports = {
     // this prevents an error when the entityName is
     // not specified (since that doesn't actually matter
     // to us
+  },
+
+  supportsAddon: function() {
+    return true;
+  },
+
+  filesPath: function() {
+    var type;
+
+    if (projectLocalizationFramework(this.project) || process.env.FORCE_LOCALIZED_FOR_TESTING) {
+      type = 'recommended-with-bare-strings';
+    } else {
+      type = 'recommended';
+    }
+
+    return path.join(this.path, type + '-files');
   }
 };
