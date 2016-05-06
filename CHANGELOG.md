@@ -1,6 +1,20 @@
 Changelog
 =========
 
+## v0.4.4
+
+- Add warning when using `ember-cli-template-lint` with a localization framework (identified by `isLocalizationFramework`
+  on the addon instance). When a localization framework is present, and the `bare-strings` rule is not listed in the 
+  `.template-lintrc.js` file, a warning will be issued saying:
+
+```
+The `bare-strings` rule must be configured when using a localization framework (`ember-i18n`). To prevent this warning, add the following to your `.template-lintrc.js`:
+
+  rules: {
+    'bare-strings\': true
+  }
+```
+
 ## v0.4.3
 
 - Add `ember template-lint:print-failing` command to list all templates in `app/` that are currently failing. This command can be
