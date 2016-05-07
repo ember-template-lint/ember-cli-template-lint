@@ -72,7 +72,19 @@ TemplateLinter.prototype.build = function () {
 };
 
 TemplateLinter.prototype.convertErrorToDisplayMessage = function(error) {
-  return error.message + ' (' + error.moduleId + ' @ L' + error.line + ':C' + error.column + '): `' + error.source;
+  var message = error.message + '(' + error.moduleId;
+
+  if (error.line && error.column) {
+    message = message + ' @ L' + error.line + ':C' + error.column;
+  }
+
+  message = message + ')';
+
+  if (error.source) {
+    message = message + ': `' + error.source + '`';
+  }
+
+  return message;
 };
 
 TemplateLinter.prototype.processString = function(contents, relativePath) {
@@ -86,18 +98,20 @@ TemplateLinter.prototype.processString = function(contents, relativePath) {
   var passed = errors.length === 0;
   var errorDisplay = errors.map(function(error) {
     return this.convertErrorToDisplayMessage(error);
-  }, this);
+  }, this)
+        .join('\n');
+
 
   var output = this._generateTestFile(
     'TemplateLint - ' + relativePath,
     [{
       name: 'should pass TemplateLint',
       passed: passed,
-      errorMessage: relativePath + ' should pass TemplateLint.' + jsStringEscape(errorDisplay)
+      errorMessage: jsStringEscape(relativePath + ' should pass TemplateLint.\n' + errorDisplay)
     }]
   );
 
-  debug('Found %s errors for %s with contents: \n%s', errors.length, relativePath, contents);
+  debug('Found %s errors for %s with \ncontents: \n%s\nerrors: \n%s', errors.length, relativePath, contents, errorDisplay);
 
   return {
     errors: errors,
