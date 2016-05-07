@@ -1,6 +1,15 @@
 Changelog
 =========
 
+## v0.4.5
+
+- Fix cosmetic issues with error message display:
+  * Ensure that multiple errors are listed on separate lines.
+  * Fix formatting when `error.line` / `error.column` are missing.
+  * Fix formatting when `error.source` is missing.
+  * Include rule name in all error messages.
+- Ensure Node 0.10, 0.12, 4.x, 6.x are all tested in CI.
+
 ## v0.4.4
 
 - Add warning when using `ember-cli-template-lint` with a localization framework (identified by `isLocalizationFramework`
