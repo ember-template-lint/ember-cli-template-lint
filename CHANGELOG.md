@@ -1,6 +1,11 @@
 Changelog
 =========
 
+## v0.4.6
+
+- Update ember-template-lint to v0.5.9 (mostly internal changes/fixes). 
+- Remove extra `htmlbars` dependency.
+
 ## v0.4.5
 
 - Fix cosmetic issues with error message display:
