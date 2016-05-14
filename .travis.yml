@@ -14,6 +14,8 @@ cache:
 
 matrix:
   fast_finish: true
+  allow_failures:
+    - node_js: "0.10"
 
 before_install:
   - "npm config set spin false"
