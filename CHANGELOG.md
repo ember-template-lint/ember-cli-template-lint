@@ -1,9 +1,25 @@
 Changelog
 =========
 
+## v0.4.7
+
+- Update underlying `ember-template-lint` to v0.5.10.
+- Add ability to mark specific rules as pending for a module. Given the following `.template-lintrc.js` file, the `foo/bar/baz` module would have only its indentation related issues labeled as warnings:
+
+```js
+module.exports = {
+  extends: 'recommended',
+  pending: [
+    { moduleId: 'foo/bar/baz', only: ['block-indentation']}
+  ]
+}
+```
+
+- Update `ember template-lint:print-failing` to emit rule specific pending list.
+
 ## v0.4.6
 
-- Update ember-template-lint to v0.5.9 (mostly internal changes/fixes). 
+- Update ember-template-lint to v0.5.9 (mostly internal changes/fixes).
 - Remove extra `htmlbars` dependency.
 
 ## v0.4.5
@@ -18,7 +34,7 @@ Changelog
 ## v0.4.4
 
 - Add warning when using `ember-cli-template-lint` with a localization framework (identified by `isLocalizationFramework`
-  on the addon instance). When a localization framework is present, and the `bare-strings` rule is not listed in the 
+  on the addon instance). When a localization framework is present, and the `bare-strings` rule is not listed in the
   `.template-lintrc.js` file, a warning will be issued saying:
 
 ```
