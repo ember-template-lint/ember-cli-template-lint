@@ -1,6 +1,10 @@
 Changelog
 =========
 
+## v0.4.8
+
+- Fix publishing issue (included `.tern-port` file in blueprint).
+
 ## v0.4.7
 
 - Update underlying `ember-template-lint` to v0.5.10.
