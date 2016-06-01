@@ -44,7 +44,7 @@
     "ember-try": "^0.2.2",
     "eslint-plugin-node": "^1.0.0",
     "glob": "^7.0.0",
-    "loader.js": "^4.0.1",
+    "loader.js": "^4.0.5",
     "mocha": "^2.5.0",
     "mocha-eslint": "^2.0.1",
     "mocha-only-detector": "^0.1.0",
