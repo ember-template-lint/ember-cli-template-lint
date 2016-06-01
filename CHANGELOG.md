@@ -1,6 +1,10 @@
 Changelog
 =========
 
+## v0.4.9
+
+- Fix compatibility with Ember versions older than 2.1.0.
+
 ## v0.4.8
 
 - Fix publishing issue (included `.tern-port` file in blueprint).
