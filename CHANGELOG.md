@@ -1,6 +1,10 @@
 Changelog
 =========
 
+## v0.4.10
+
+- Cleanup error messages (prevent the message from being squashed onto the location info).
+
 ## v0.4.9
 
 - Fix compatibility with Ember versions older than 2.1.0.
