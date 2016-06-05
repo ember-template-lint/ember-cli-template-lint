@@ -72,7 +72,7 @@ TemplateLinter.prototype.build = function () {
 };
 
 TemplateLinter.prototype.convertErrorToDisplayMessage = function(error) {
-  var message = error.rule + ': ' + error.message + '(' + error.moduleId;
+  var message = error.rule + ': ' + error.message + ' (' + error.moduleId;
 
   if (error.line && error.column) {
     message = message + ' @ L' + error.line + ':C' + error.column;
