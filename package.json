@@ -10,7 +10,7 @@
     "build": "ember build",
     "start": "ember server",
     "test": "ember try:testall",
-    "test-node": "node node-tests/nodetest-runner.js"
+    "nodetest": "mocha node-tests --recursive"
   },
   "homepage": "https://github.com/rwjblue/ember-cli-template-lint",
   "repository": {
