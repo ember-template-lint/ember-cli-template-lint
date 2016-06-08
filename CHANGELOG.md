@@ -1,6 +1,10 @@
 Changelog
 =========
 
+## v0.4.11
+
+- Fix typos in `ember template-lint:print-failing` command output.
+
 ## v0.4.10
 
 - Cleanup error messages (prevent the message from being squashed onto the location info).
