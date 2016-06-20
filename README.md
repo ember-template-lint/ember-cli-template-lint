@@ -64,3 +64,12 @@ A few ideas for where to take this in the future:
 * `ember build`
 
 For more information on using ember-cli, visit [http://www.ember-cli.com/](http://www.ember-cli.com/).
+
+## Troubleshooting
+
+If your files aren't linted make sure that you don't have the following option set in your `ember-cli-build.js`:
+```
+var app = new EmberApp(defaults, {
+  hinting: false
+});
+```
