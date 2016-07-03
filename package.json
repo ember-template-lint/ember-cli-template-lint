@@ -42,7 +42,7 @@
     "ember-load-initializers": "^0.5.1",
     "ember-resolver": "^2.0.3",
     "ember-try": "^0.2.2",
-    "eslint-plugin-node": "^1.5.2",
+    "eslint-plugin-node": "^2.0.0",
     "glob": "^7.0.0",
     "loader.js": "^4.0.5",
     "mocha": "^2.5.0",
