@@ -28,4 +28,4 @@ install:
 
 script:
   - ember test
-  - npm run test-node
+  - npm run nodetest

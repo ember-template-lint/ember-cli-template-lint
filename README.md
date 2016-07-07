@@ -55,7 +55,7 @@ A few ideas for where to take this in the future:
 
 ### Running Tests
 
-* `npm run test-node`
+* `npm run nodetest`
 * `ember test`
 * `ember test --server`
 

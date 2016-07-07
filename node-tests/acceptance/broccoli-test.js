@@ -42,6 +42,29 @@ describe('broccoli-template-linter', function() {
     return cleanupBuilders();
   });
 
+  it('only fails because it is the first test in the file', function() {
+    var basePath = path.join(fixturePath, 'with-errors');
+    var builder = makeBuilder(basePath);
+
+    return builder('app', {
+      console: mockConsole,
+      generateTestFile: function(moduleName, tests) {
+        return tests[0].errorMessage;
+      }
+    })
+      .then(function(results) {
+        var outputPath = results.directory;
+        var contents = fs.readFileSync(
+          path.join(outputPath, 'templates', 'application.template-lint-test.js'),
+          { encoding: 'utf8' }
+        );
+
+        assert.ok(contents.indexOf('Incorrect indentation for `div`') > -1);
+        assert.ok(contents.indexOf('Incorrect indentation for `p`') > -1);
+        assert.ok(contents.indexOf('HTML comment detected') > -1);
+      });
+  });
+
   it('uses provided generateTestFile to return a test file', function() {
     var basePath = path.join(fixturePath, 'with-errors');
     var builder = makeBuilder(basePath);
