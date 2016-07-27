@@ -65,7 +65,7 @@
     "js-string-escape": "^1.0.0",
     "json-stable-stringify": "^1.0.1",
     "md5-hex": "^1.2.1",
-    "walk-sync": "^0.2.6"
+    "walk-sync": "^0.3.0"
   },
   "ember-addon": {
     "configPath": "tests/dummy/config",
