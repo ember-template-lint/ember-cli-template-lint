@@ -1,6 +1,11 @@
 Changelog
 =========
 
+## v0.4.12
+
+- Update various internal dependencies.
+- Fix caching related warning message when used with recent ember-cli-htmlbars versions.
+
 ## v0.4.11
 
 - Fix typos in `ember template-lint:print-failing` command output.
