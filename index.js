@@ -46,7 +46,10 @@ module.exports = {
 
     registry.add('htmlbars-ast-plugin', {
       name: 'remove-configuration-html-comments',
-      plugin: RemoveConfigurationHtmlComments()
+      plugin: RemoveConfigurationHtmlComments(),
+      baseDir: function() {
+        return __dirname;
+      }
     });
   }
 };
