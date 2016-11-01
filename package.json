@@ -41,7 +41,7 @@
     "ember-export-application-global": "^1.0.5",
     "ember-load-initializers": "^0.5.1",
     "ember-resolver": "^2.0.3",
-    "eslint-plugin-node": "^2.0.0",
+    "eslint-plugin-node": "^3.0.2",
     "glob": "^7.0.0",
     "loader.js": "^4.0.5",
     "mocha": "^3.0.0",
