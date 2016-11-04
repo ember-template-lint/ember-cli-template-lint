@@ -59,7 +59,7 @@
     "ember-cli-babel": "^5.1.7",
     "ember-cli-version-checker": "^1.1.6",
     "ember-template-lint": "^0.5.10",
-    "exists-sync": "0.0.3",
+    "exists-sync": "0.0.4",
     "hash-for-dep": "^1.0.2",
     "js-string-escape": "^1.0.0",
     "json-stable-stringify": "^1.0.1",
