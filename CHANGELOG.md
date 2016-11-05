@@ -1,6 +1,18 @@
 Changelog
 =========
 
+## v0.5.0
+
+- Update ember-template-lint to 0.6.0. Changes from 0.5.x are:
+  - Add `invalid-interactive` to recommended rules.
+  - Add `img-alt-attributes` to recommended rules.
+  - Add `style-concatenation` to recommended rules.
+  - Add `deprecated-inline-view-helper` to recommended rules.
+  - Add `link-rel-noopener` to recommended rules.
+  - Remove support for Node 0.10.
+- Remove support for  Node 0.10 
+
+
 ## v0.4.12
 
 - Update various internal dependencies.
