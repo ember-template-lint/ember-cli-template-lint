@@ -18,7 +18,7 @@
     "url": "git+ssh://git@github.com/rwjblue/ember-cli-template-lint.git"
   },
   "engines": {
-    "node": ">= 0.10.0"
+    "node": ">= 0.12"
   },
   "author": "Robert Jackson <me@rwjblue.com>",
   "license": "MIT",
