@@ -4,7 +4,7 @@ Changelog
 ## v0.5.1
 
 - Ensure linting warnings honor the `--silent` flag.
-y
+
 ## v0.5.0
 
 - Update ember-template-lint to 0.6.0. Changes from 0.5.x are:
