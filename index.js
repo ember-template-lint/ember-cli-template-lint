@@ -35,7 +35,7 @@ module.exports = {
         annotation: 'TemplateLinter',
         templatercPath: this.project.root + '/.template-lintrc',
         generateTestFile: this.project.generateTestFile,
-        _console: mockConsole,
+        console: mockConsole,
         project: this.project
       });
     }
