@@ -55,7 +55,7 @@ describe('broccoli-template-linter', function() {
       .then(function(results) {
         var outputPath = results.directory;
         var contents = fs.readFileSync(
-          path.join(outputPath, 'templates', 'application.template-lint-test.js'),
+          path.join(outputPath, 'templates', 'application.template.lint-test.js'),
           { encoding: 'utf8' }
         );
 
@@ -75,7 +75,7 @@ describe('broccoli-template-linter', function() {
       .then(function(results) {
         var outputPath = results.directory;
         var contents = fs.readFileSync(
-          path.join(outputPath, 'templates', 'application.template-lint-test.js'),
+          path.join(outputPath, 'templates', 'application.template.lint-test.js'),
           { encoding: 'utf8' }
         );
 
