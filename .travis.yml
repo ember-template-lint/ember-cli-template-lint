@@ -1,10 +1,9 @@
 ---
 language: node_js
 node_js:
-  - "0.12"
   - "4"
   - "6"
-  - "stable"
+  - "node"
 
 sudo: false
 
@@ -14,8 +13,6 @@ cache:
 
 matrix:
   fast_finish: true
-  allow_failures:
-    - node_js: "0.10"
 
 before_install:
   - "npm config set spin false"
