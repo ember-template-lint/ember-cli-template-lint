@@ -1,6 +1,6 @@
 {
   "name": "ember-cli-template-lint",
-  "version": "0.5.1",
+  "version": "0.5.2",
   "description": "Lint your handlebars templates.",
   "directories": {
     "doc": "doc",
