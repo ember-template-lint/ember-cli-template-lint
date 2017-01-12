@@ -1,6 +1,11 @@
 Changelog
 =========
 
+## v0.5.2
+
+- Update test file generation to use proper file extension. This allows usage of the `Disable Linting` checkbox
+  in the ember-cli test runner to properly suppress template linting tests.
+
 ## v0.5.1
 
 - Ensure linting warnings honor the `--silent` flag.
