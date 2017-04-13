@@ -1,6 +1,5 @@
 'use strict';
 
-var fs = require('fs');
 var blueprintHelpers = require('ember-cli-blueprint-test-helpers/helpers');
 var setupTestHooks = blueprintHelpers.setupTestHooks;
 var emberNew = blueprintHelpers.emberNew;
@@ -21,8 +20,6 @@ describe('Acceptance: ember generate and destroy ember-cli-template-lint', funct
   after(function() {
     delete process.env.EMBER_DATA_SKIP_VERSION_CHECKING_DO_NOT_USE_THIS_ENV_VARIABLE;
     delete process.env.FORCE_LOCALIZED_FOR_TESTING;
-
-    fs.unlinkSync('node_modules/ember-cli-template-lint');
   });
 
   it('ember-cli-template-lint without localization framework', function() {
