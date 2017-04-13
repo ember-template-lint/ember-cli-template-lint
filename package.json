@@ -58,7 +58,7 @@
     "debug": "^2.2.0",
     "ember-cli-babel": "^5.1.7",
     "ember-cli-version-checker": "^1.1.6",
-    "ember-template-lint": "^0.6.0",
+    "ember-template-lint": "^0.6.4",
     "exists-sync": "0.0.4",
     "hash-for-dep": "^1.0.2",
     "js-string-escape": "^1.0.0",
