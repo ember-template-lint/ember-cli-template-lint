@@ -1,6 +1,6 @@
 'use strict';
 
-var assert = require('assert');
+var expect = require('chai').expect;
 var projectLocalizationFramework = require('../../lib/utils/project-localization-framework');
 
 describe('project-localization-framework', function() {
@@ -12,7 +12,7 @@ describe('project-localization-framework', function() {
       { name: 'ember-cli-template-lint' }
     ]);
 
-    assert.ok(!projectLocalizationFramework(project));
+    expect(projectLocalizationFramework(project)).to.not.be.ok;
   });
 
   it('returns the addon when one has the `isLocalizationFramework` flag', function() {
@@ -27,6 +27,6 @@ describe('project-localization-framework', function() {
       localizationAddon
     ]);
 
-    assert.equal(projectLocalizationFramework(project), localizationAddon);
+    expect(projectLocalizationFramework(project)).to.equal(localizationAddon);
   });
 });
