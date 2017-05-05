@@ -1,6 +1,6 @@
-/* jshint node: true */
-/*eslint-env node*/
 'use strict';
+
+/* eslint-env node */
 
 var VersionChecker = require('ember-cli-version-checker');
 var TemplateLinter = require('./broccoli-template-linter');

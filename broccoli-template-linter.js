@@ -1,6 +1,6 @@
 'use strict';
-/* jshint node: true */
-/*eslint-env node*/
+
+/* eslint-env node */
 
 var Filter = require('broccoli-persistent-filter');
 var md5Hex = require('md5-hex');

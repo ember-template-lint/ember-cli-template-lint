@@ -1,5 +1,7 @@
-/*jshint node:true*/
-/* global require, module */
+'use strict';
+
+/* eslint-env node */
+
 var EmberAddon = require('ember-cli/lib/broccoli/ember-addon');
 
 module.exports = function(defaults) {
