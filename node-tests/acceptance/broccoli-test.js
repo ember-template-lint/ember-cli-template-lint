@@ -1,25 +1,28 @@
 'use strict';
 
-const path = require('path');
-const fs = require('fs');
 const co = require('co');
 const expect = require('chai').expect;
-const broccoliTestHelpers = require('broccoli-test-helpers');
-const makeTestHelper = broccoliTestHelpers.makeTestHelper;
-const cleanupBuilders = broccoliTestHelpers.cleanupBuilders;
+const broccoliTestHelper = require('broccoli-test-helper');
+const createBuilder = broccoliTestHelper.createBuilder;
+const createTempDir = broccoliTestHelper.createTempDir;
 
 const TemplateLinter = require('../../broccoli-template-linter');
-const fixturePath = path.join(process.cwd(), 'node-tests', 'fixtures');
-
-const root = process.cwd();
+const fixturePath = `${__dirname}/../fixtures`;
 
 describe('broccoli-template-linter', function() {
-  function makeBuilder(fixturePath) {
-    return makeTestHelper({
-      subject: TemplateLinter,
-      fixturePath: fixturePath
-    });
-  }
+  let input, output, subject, mockConsole;
+
+  beforeEach(co.wrap(function *() {
+    this.timeout(10000);
+
+    input = yield createTempDir();
+    mockConsole = buildFakeConsole();
+  }));
+
+  afterEach(co.wrap(function *() {
+    yield input.dispose();
+    yield output.dispose();
+  }));
 
   function buildFakeConsole() {
     return {
@@ -31,68 +34,60 @@ describe('broccoli-template-linter', function() {
     };
   }
 
-  let mockConsole;
-
-  beforeEach(function() {
-    mockConsole = buildFakeConsole();
-  });
-
-  afterEach(function() {
-    process.chdir(root);
-
-    return cleanupBuilders();
-  });
-
   it('uses provided generateTestFile to return a test file', co.wrap(function *() {
-    let basePath = path.join(fixturePath, 'with-errors');
-    let builder = makeBuilder(basePath);
+    input.copy(`${fixturePath}/with-errors`);
 
-    let results = yield builder('app', {
+    subject = new TemplateLinter(`${input.path()}/app`, {
       console: mockConsole,
       generateTestFile(moduleName, tests) {
         return tests[0].errorMessage;
       }
     });
 
-    let outputPath = results.directory;
-    let contents = fs.readFileSync(
-      path.join(outputPath, 'templates', 'application.template.lint-test.js'),
-      { encoding: 'utf8' }
-    );
+    output = createBuilder(subject);
+    yield output.build();
 
+    let result = output.read();
+    expect(result).to.have.property('templates');
+    expect(result.templates).to.have.property('application.template.lint-test.js');
+
+    let contents = result.templates['application.template.lint-test.js'];
     expect(contents).to.contain('Incorrect indentation for `div`');
     expect(contents).to.contain('Incorrect indentation for `p`');
     expect(contents).to.contain('HTML comment detected');
   }));
 
   it('returns an empty string if no generateTestFile is provided', co.wrap(function *() {
-    let basePath = path.join(fixturePath, 'with-errors');
-    let builder = makeBuilder(basePath);
+    input.copy(`${fixturePath}/with-errors`);
 
-    let results = yield builder('app', {
+    subject = new TemplateLinter(`${input.path()}/app`, {
       console: mockConsole
     });
 
-    let outputPath = results.directory;
-    let contents = fs.readFileSync(
-      path.join(outputPath, 'templates', 'application.template.lint-test.js'),
-      { encoding: 'utf8' }
-    );
+    output = createBuilder(subject);
+    yield output.build();
 
+    let result = output.read();
+    expect(result).to.have.property('templates');
+    expect(result.templates).to.have.property('application.template.lint-test.js');
+
+    let contents = result.templates['application.template.lint-test.js'];
     expect(contents).to.equal('');
   }));
 
   it('prints warnings to console', co.wrap(function *() {
-    let basePath = path.join(fixturePath, 'with-errors');
-    let builder = makeBuilder(basePath);
+    input.copy(`${fixturePath}/with-errors`);
 
-    yield builder('app', {
+    subject = new TemplateLinter(`${input.path()}/app`, {
       persist: false, // console messages are only printed when initially processed
       console: mockConsole,
       generateTestFile(moduleName, tests) {
         return tests[0].errorMessage;
       }
     });
+
+    output = createBuilder(subject);
+    yield output.build();
 
     let combinedLog = mockConsole._logLines.join('\n');
 
@@ -102,15 +97,14 @@ describe('broccoli-template-linter', function() {
   }));
 
   it('prints warnings when bare-strings is not used with a localization addon present', co.wrap(function *() {
-    let basePath = path.join(fixturePath, 'no-bare-strings');
-    let builder = makeBuilder(basePath);
+    input.copy(`${fixturePath}/no-bare-strings`);
 
     let localizationAddon = {
       name: 'ember-intl',
       isLocalizationFramework: true
     };
 
-    yield builder('app', {
+    subject = new TemplateLinter(`${input.path()}/app`, {
       console: mockConsole,
       project: {
         addons: [
@@ -122,6 +116,9 @@ describe('broccoli-template-linter', function() {
       generateTestFile() { }
     });
 
+    output = createBuilder(subject);
+    yield output.build();
+
     let combinedLog = mockConsole._logLines.join('\n');
 
     expect(combinedLog).to.contain('ember-intl');
@@ -129,10 +126,9 @@ describe('broccoli-template-linter', function() {
   }));
 
   it('does not print warning when bare-strings is not used when a localization addon is not present', co.wrap(function *() {
-    let basePath = path.join(fixturePath, 'no-bare-strings');
-    let builder = makeBuilder(basePath);
+    input.copy(`${fixturePath}/no-bare-strings`);
 
-    yield builder('app', {
+    subject = new TemplateLinter(`${input.path()}/app`, {
       console: mockConsole,
       project: {
         addons: [
@@ -143,6 +139,9 @@ describe('broccoli-template-linter', function() {
       generateTestFile() { }
     });
 
+    output = createBuilder(subject);
+    yield output.build();
+
     let combinedLog = mockConsole._logLines.join('\n');
 
     expect(combinedLog)
@@ -150,18 +149,17 @@ describe('broccoli-template-linter', function() {
   }));
 
   it('does not print warning when bare-strings is specified in config', co.wrap(function *() {
-    let basePath = path.join(fixturePath, 'with-bare-strings');
-    let builder = makeBuilder(basePath);
+    input.copy(`${fixturePath}/with-bare-strings`);
 
     // broccoliTestHelpers.makeTestHelper does a chdir, but after instantiation
-    process.chdir(basePath);
+    process.chdir(input.path());
 
     let localizationAddon = {
       name: 'ember-intl',
       isLocalizationFramework: true
     };
 
-    yield builder('app', {
+    subject = new TemplateLinter(`${input.path()}/app`, {
       console: mockConsole,
       project: {
         addons: [
@@ -172,6 +170,9 @@ describe('broccoli-template-linter', function() {
       },
       generateTestFile() { }
     });
+
+    output = createBuilder(subject);
+    yield output.build();
 
     let combinedLog = mockConsole._logLines.join('\n');
 
