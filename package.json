@@ -2,26 +2,44 @@
   "name": "ember-cli-template-lint",
   "version": "0.5.2",
   "description": "Lint your handlebars templates.",
+  "keywords": [
+    "ember-addon"
+  ],
+  "homepage": "https://github.com/rwjblue/ember-cli-template-lint",
+  "bugs": {
+    "url": "https://github.com/rwjblue/ember-cli-template-lint/issues"
+  },
+  "license": "MIT",
+  "author": "Robert Jackson <me@rwjblue.com>",
+  "main": "index.js",
   "directories": {
     "doc": "doc",
     "test": "tests"
   },
-  "scripts": {
-    "build": "ember build",
-    "start": "ember server",
-    "test": "ember try:testall",
-    "nodetest": "mocha node-tests --recursive --timeout 5000"
-  },
-  "homepage": "https://github.com/rwjblue/ember-cli-template-lint",
   "repository": {
     "type": "git",
     "url": "git+ssh://git@github.com/rwjblue/ember-cli-template-lint.git"
   },
-  "engines": {
-    "node": ">= 0.12"
+  "scripts": {
+    "build": "ember build",
+    "nodetest": "mocha node-tests --recursive --timeout 5000",
+    "start": "ember server",
+    "test": "ember try:testall"
   },
-  "author": "Robert Jackson <me@rwjblue.com>",
-  "license": "MIT",
+  "dependencies": {
+    "broccoli-persistent-filter": "^1.2.0",
+    "chalk": "^1.1.1",
+    "debug": "^2.2.0",
+    "ember-cli-babel": "^5.1.7",
+    "ember-cli-version-checker": "^1.1.6",
+    "ember-template-lint": "^0.6.0",
+    "exists-sync": "0.0.4",
+    "hash-for-dep": "^1.0.2",
+    "js-string-escape": "^1.0.0",
+    "json-stable-stringify": "^1.0.1",
+    "md5-hex": "^1.2.1",
+    "walk-sync": "^0.3.0"
+  },
   "devDependencies": {
     "broccoli-asset-rev": "^2.4.2",
     "broccoli-test-helpers": "0.0.9",
@@ -49,29 +67,11 @@
     "mocha-only-detector": "^0.1.0",
     "rimraf": "^2.5.2"
   },
-  "keywords": [
-    "ember-addon"
-  ],
-  "dependencies": {
-    "broccoli-persistent-filter": "^1.2.0",
-    "chalk": "^1.1.1",
-    "debug": "^2.2.0",
-    "ember-cli-babel": "^5.1.7",
-    "ember-cli-version-checker": "^1.1.6",
-    "ember-template-lint": "^0.6.0",
-    "exists-sync": "0.0.4",
-    "hash-for-dep": "^1.0.2",
-    "js-string-escape": "^1.0.0",
-    "json-stable-stringify": "^1.0.1",
-    "md5-hex": "^1.2.1",
-    "walk-sync": "^0.3.0"
+  "engines": {
+    "node": ">= 0.12"
   },
   "ember-addon": {
     "configPath": "tests/dummy/config",
     "after": "ember-cli-htmlbars"
-  },
-  "bugs": {
-    "url": "https://github.com/rwjblue/ember-cli-template-lint/issues"
-  },
-  "main": "index.js"
+  }
 }
