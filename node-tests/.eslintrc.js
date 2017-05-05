@@ -5,5 +5,9 @@ module.exports = {
     browser: false,
     node: true,
     mocha: true
-  }
+  },
+  rules: {
+    // disabled because of Chai.js
+    'no-unused-expressions': 'off',
+  },
 };

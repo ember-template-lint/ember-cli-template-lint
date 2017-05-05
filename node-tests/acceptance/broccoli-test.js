@@ -2,7 +2,7 @@
 
 var path = require('path');
 var fs = require('fs');
-var assert = require('assert');
+var expect = require('chai').expect;
 var broccoliTestHelpers = require('broccoli-test-helpers');
 var makeTestHelper = broccoliTestHelpers.makeTestHelper;
 var cleanupBuilders = broccoliTestHelpers.cleanupBuilders;
@@ -59,9 +59,9 @@ describe('broccoli-template-linter', function() {
           { encoding: 'utf8' }
         );
 
-        assert.ok(contents.indexOf('Incorrect indentation for `div`') > -1);
-        assert.ok(contents.indexOf('Incorrect indentation for `p`') > -1);
-        assert.ok(contents.indexOf('HTML comment detected') > -1);
+        expect(contents).to.contain('Incorrect indentation for `div`');
+        expect(contents).to.contain('Incorrect indentation for `p`');
+        expect(contents).to.contain('HTML comment detected');
       });
   });
 
@@ -79,7 +79,7 @@ describe('broccoli-template-linter', function() {
           { encoding: 'utf8' }
         );
 
-        assert.equal(contents, '');
+        expect(contents).to.equal('');
       });
   });
 
@@ -97,9 +97,9 @@ describe('broccoli-template-linter', function() {
       .then(function() {
         var combinedLog = mockConsole._logLines.join('\n');
 
-        assert.ok(combinedLog.indexOf('Incorrect indentation for `div`') > -1);
-        assert.ok(combinedLog.indexOf('Incorrect indentation for `p`') > -1);
-        assert.ok(combinedLog.indexOf('HTML comment detected') > -1);
+        expect(combinedLog).to.contain('Incorrect indentation for `div`');
+        expect(combinedLog).to.contain('Incorrect indentation for `p`');
+        expect(combinedLog).to.contain('HTML comment detected');
       });
   });
 
@@ -126,8 +126,8 @@ describe('broccoli-template-linter', function() {
       .then(function() {
         var combinedLog = mockConsole._logLines.join('\n');
 
-        assert.ok(combinedLog.indexOf('ember-intl') > -1);
-        assert.ok(combinedLog.indexOf('The `bare-strings` rule must be configured when using a localization framework') > -1);
+        expect(combinedLog).to.contain('ember-intl');
+        expect(combinedLog).to.contain('The `bare-strings` rule must be configured when using a localization framework');
       });
   });
 
@@ -148,7 +148,8 @@ describe('broccoli-template-linter', function() {
       .then(function() {
         var combinedLog = mockConsole._logLines.join('\n');
 
-        assert.ok(combinedLog.indexOf('The `bare-strings` rule must be configured when using a localization framework') === -1);
+        expect(combinedLog)
+          .to.not.contain('The `bare-strings` rule must be configured when using a localization framework');
       });
   });
 
@@ -178,7 +179,8 @@ describe('broccoli-template-linter', function() {
       .then(function() {
         var combinedLog = mockConsole._logLines.join('\n');
 
-        assert.ok(combinedLog.indexOf('The `bare-strings` rule must be configured when using a localization framework') === -1);
+        expect(combinedLog)
+          .to.not.contain('The `bare-strings` rule must be configured when using a localization framework');
       });
   });
 });
