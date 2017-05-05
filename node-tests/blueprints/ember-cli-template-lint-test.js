@@ -25,10 +25,8 @@ describe('Acceptance: ember generate and destroy ember-cli-template-lint', funct
     let args = ['ember-cli-template-lint'];
 
     return emberNew()
-      .then(function() {
-        return emberGenerate(args);
-      })
-      .then(function() {
+      .then(() => emberGenerate(args))
+      .then(() => {
         expect(file('.template-lintrc.js')).to.contain('extends: \'recommended\'');
       });
   });
@@ -38,10 +36,8 @@ describe('Acceptance: ember generate and destroy ember-cli-template-lint', funct
     let args = ['ember-cli-template-lint'];
 
     return emberNew()
-      .then(function() {
-        return emberGenerate(args);
-      })
-      .then(function() {
+      .then(() => emberGenerate(args))
+      .then(() => {
         expect(file('.template-lintrc.js')).to.contain('extends: \'recommended\'');
         expect(file('.template-lintrc.js')).to.contain('\'bare-strings\': true');
       });

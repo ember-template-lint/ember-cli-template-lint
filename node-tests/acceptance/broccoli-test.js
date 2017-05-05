@@ -52,7 +52,7 @@ describe('broccoli-template-linter', function() {
         return tests[0].errorMessage;
       }
     })
-      .then(function(results) {
+      .then(results => {
         let outputPath = results.directory;
         let contents = fs.readFileSync(
           path.join(outputPath, 'templates', 'application.template.lint-test.js'),
@@ -72,7 +72,7 @@ describe('broccoli-template-linter', function() {
     return builder('app', {
       console: mockConsole
     })
-      .then(function(results) {
+      .then(results => {
         let outputPath = results.directory;
         let contents = fs.readFileSync(
           path.join(outputPath, 'templates', 'application.template.lint-test.js'),
@@ -93,14 +93,13 @@ describe('broccoli-template-linter', function() {
       generateTestFile(moduleName, tests) {
         return tests[0].errorMessage;
       }
-    })
-      .then(function() {
-        let combinedLog = mockConsole._logLines.join('\n');
+    }).then(() => {
+      let combinedLog = mockConsole._logLines.join('\n');
 
-        expect(combinedLog).to.contain('Incorrect indentation for `div`');
-        expect(combinedLog).to.contain('Incorrect indentation for `p`');
-        expect(combinedLog).to.contain('HTML comment detected');
-      });
+      expect(combinedLog).to.contain('Incorrect indentation for `div`');
+      expect(combinedLog).to.contain('Incorrect indentation for `p`');
+      expect(combinedLog).to.contain('HTML comment detected');
+    });
   });
 
   it('prints warnings when bare-strings is not used with a localization addon present', function() {
@@ -122,13 +121,12 @@ describe('broccoli-template-linter', function() {
         ]
       },
       generateTestFile() { }
-    })
-      .then(function() {
-        let combinedLog = mockConsole._logLines.join('\n');
+    }).then(() => {
+      let combinedLog = mockConsole._logLines.join('\n');
 
-        expect(combinedLog).to.contain('ember-intl');
-        expect(combinedLog).to.contain('The `bare-strings` rule must be configured when using a localization framework');
-      });
+      expect(combinedLog).to.contain('ember-intl');
+      expect(combinedLog).to.contain('The `bare-strings` rule must be configured when using a localization framework');
+    });
   });
 
   it('does not print warning when bare-strings is not used when a localization addon is not present', function() {
@@ -144,13 +142,12 @@ describe('broccoli-template-linter', function() {
         ]
       },
       generateTestFile() { }
-    })
-      .then(function() {
-        let combinedLog = mockConsole._logLines.join('\n');
+    }).then(() => {
+      let combinedLog = mockConsole._logLines.join('\n');
 
-        expect(combinedLog)
-          .to.not.contain('The `bare-strings` rule must be configured when using a localization framework');
-      });
+      expect(combinedLog)
+        .to.not.contain('The `bare-strings` rule must be configured when using a localization framework');
+    });
   });
 
   it('does not print warning when bare-strings is specified in config', function() {
@@ -175,12 +172,11 @@ describe('broccoli-template-linter', function() {
         ]
       },
       generateTestFile() { }
-    })
-      .then(function() {
-        let combinedLog = mockConsole._logLines.join('\n');
+    }).then(() => {
+      let combinedLog = mockConsole._logLines.join('\n');
 
-        expect(combinedLog)
-          .to.not.contain('The `bare-strings` rule must be configured when using a localization framework');
-      });
+      expect(combinedLog)
+        .to.not.contain('The `bare-strings` rule must be configured when using a localization framework');
+    });
   });
 });
