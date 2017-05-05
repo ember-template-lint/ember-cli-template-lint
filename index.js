@@ -2,9 +2,9 @@
 
 /* eslint-env node */
 
-var VersionChecker = require('ember-cli-version-checker');
-var TemplateLinter = require('./broccoli-template-linter');
-var PrintFailing = require('./lib/commands/print-failing');
+const VersionChecker = require('ember-cli-version-checker');
+const TemplateLinter = require('./broccoli-template-linter');
+const PrintFailing = require('./lib/commands/print-failing');
 
 module.exports = {
   name: 'ember-cli-template-lint',
@@ -16,12 +16,12 @@ module.exports = {
   },
 
   lintTree: function(type, tree) {
-    var checker = new VersionChecker(this);
+    let checker = new VersionChecker(this);
     checker.for('ember-cli', 'npm').assertAbove('2.4.1');
 
     if (type === 'templates') {
-      var ui = this.ui;
-      var mockConsole = {
+      let ui = this.ui;
+      let mockConsole = {
         log: function(data) {
           ui.writeLine(data);
         },
@@ -42,7 +42,7 @@ module.exports = {
   },
 
   setupPreprocessorRegistry: function(type, registry) {
-    var RemoveConfigurationHtmlComments = require('./lib/plugins/remove-configuration-html-comments');
+    let RemoveConfigurationHtmlComments = require('./lib/plugins/remove-configuration-html-comments');
 
     registry.add('htmlbars-ast-plugin', {
       name: 'remove-configuration-html-comments',

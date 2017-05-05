@@ -1,13 +1,13 @@
 'use strict';
 
-var expect = require('chai').expect;
-var projectLocalizationFramework = require('../../lib/utils/project-localization-framework');
+const expect = require('chai').expect;
+const projectLocalizationFramework = require('../../lib/utils/project-localization-framework');
 
 describe('project-localization-framework', function() {
   function Project(addons) { this.addons = addons; }
 
   it('returns falsey when no addons have the `isLocalizationFramework` flag', function() {
-    var project = new Project([
+    let project = new Project([
       { name: 'ember-cli-qunit' },
       { name: 'ember-cli-template-lint' }
     ]);
@@ -16,12 +16,12 @@ describe('project-localization-framework', function() {
   });
 
   it('returns the addon when one has the `isLocalizationFramework` flag', function() {
-    var localizationAddon = {
+    let localizationAddon = {
       name: 'ember-intl',
       isLocalizationFramework: true
     };
 
-    var project = new Project([
+    let project = new Project([
       { name: 'ember-cli-qunit' },
       { name: 'ember-cli-template-lint' },
       localizationAddon

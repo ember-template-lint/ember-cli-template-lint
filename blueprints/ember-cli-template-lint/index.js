@@ -1,8 +1,8 @@
 'use strict';
 /*eslint-env node */
 
-var path = require('path');
-var projectLocalizationFramework = require('../../lib/utils/project-localization-framework');
+const path = require('path');
+const projectLocalizationFramework = require('../../lib/utils/project-localization-framework');
 
 module.exports = {
   description: 'Generate default configuration for ember-cli-template-lint.',
@@ -18,7 +18,7 @@ module.exports = {
   },
 
   filesPath: function() {
-    var type;
+    let type;
 
     if (projectLocalizationFramework(this.project) || process.env.FORCE_LOCALIZED_FOR_TESTING) {
       type = 'recommended-with-bare-strings';

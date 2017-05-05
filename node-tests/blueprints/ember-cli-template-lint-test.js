@@ -1,14 +1,13 @@
 'use strict';
 
-var blueprintHelpers = require('ember-cli-blueprint-test-helpers/helpers');
-var setupTestHooks = blueprintHelpers.setupTestHooks;
-var emberNew = blueprintHelpers.emberNew;
-var emberGenerate = require('ember-cli-blueprint-test-helpers/lib/ember-generate');
-//var modifyPackages = blueprintHelpers.modifyPackages;
+const blueprintHelpers = require('ember-cli-blueprint-test-helpers/helpers');
+const setupTestHooks = blueprintHelpers.setupTestHooks;
+const emberNew = blueprintHelpers.emberNew;
+const emberGenerate = require('ember-cli-blueprint-test-helpers/lib/ember-generate');
 
-var chai = require('ember-cli-blueprint-test-helpers/chai');
-var expect = chai.expect;
-var file = chai.file;
+const chai = require('ember-cli-blueprint-test-helpers/chai');
+const expect = chai.expect;
+const file = chai.file;
 
 describe('Acceptance: ember generate and destroy ember-cli-template-lint', function() {
   setupTestHooks(this);
@@ -23,7 +22,7 @@ describe('Acceptance: ember generate and destroy ember-cli-template-lint', funct
   });
 
   it('ember-cli-template-lint without localization framework', function() {
-    var args = ['ember-cli-template-lint'];
+    let args = ['ember-cli-template-lint'];
 
     return emberNew()
       .then(function() {
@@ -36,7 +35,7 @@ describe('Acceptance: ember generate and destroy ember-cli-template-lint', funct
 
   it('ember-cli-template-lint with localization framework', function() {
     process.env.FORCE_LOCALIZED_FOR_TESTING = true;
-    var args = ['ember-cli-template-lint'];
+    let args = ['ember-cli-template-lint'];
 
     return emberNew()
       .then(function() {
