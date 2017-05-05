@@ -1,5 +1,6 @@
 'use strict';
 
+const co = require('co');
 const blueprintHelpers = require('ember-cli-blueprint-test-helpers/helpers');
 const setupTestHooks = blueprintHelpers.setupTestHooks;
 const emberNew = blueprintHelpers.emberNew;
@@ -21,25 +22,23 @@ describe('Acceptance: ember generate and destroy ember-cli-template-lint', funct
     delete process.env.FORCE_LOCALIZED_FOR_TESTING;
   });
 
-  it('ember-cli-template-lint without localization framework', function() {
+  it('ember-cli-template-lint without localization framework', co.wrap(function *() {
     let args = ['ember-cli-template-lint'];
 
-    return emberNew()
-      .then(() => emberGenerate(args))
-      .then(() => {
-        expect(file('.template-lintrc.js')).to.contain('extends: \'recommended\'');
-      });
-  });
+    yield emberNew();
+    yield emberGenerate(args);
 
-  it('ember-cli-template-lint with localization framework', function() {
+    expect(file('.template-lintrc.js')).to.contain('extends: \'recommended\'');
+  }));
+
+  it('ember-cli-template-lint with localization framework', co.wrap(function *() {
     process.env.FORCE_LOCALIZED_FOR_TESTING = true;
     let args = ['ember-cli-template-lint'];
 
-    return emberNew()
-      .then(() => emberGenerate(args))
-      .then(() => {
-        expect(file('.template-lintrc.js')).to.contain('extends: \'recommended\'');
-        expect(file('.template-lintrc.js')).to.contain('\'bare-strings\': true');
-      });
-  });
+    yield emberNew();
+    yield emberGenerate(args);
+
+    expect(file('.template-lintrc.js')).to.contain('extends: \'recommended\'');
+    expect(file('.template-lintrc.js')).to.contain('\'bare-strings\': true');
+  }));
 });

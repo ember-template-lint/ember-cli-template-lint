@@ -2,6 +2,7 @@
 
 const path = require('path');
 const fs = require('fs');
+const co = require('co');
 const expect = require('chai').expect;
 const broccoliTestHelpers = require('broccoli-test-helpers');
 const makeTestHelper = broccoliTestHelpers.makeTestHelper;
@@ -42,67 +43,65 @@ describe('broccoli-template-linter', function() {
     return cleanupBuilders();
   });
 
-  it('uses provided generateTestFile to return a test file', function() {
+  it('uses provided generateTestFile to return a test file', co.wrap(function *() {
     let basePath = path.join(fixturePath, 'with-errors');
     let builder = makeBuilder(basePath);
 
-    return builder('app', {
+    let results = yield builder('app', {
       console: mockConsole,
       generateTestFile(moduleName, tests) {
         return tests[0].errorMessage;
       }
-    })
-      .then(results => {
-        let outputPath = results.directory;
-        let contents = fs.readFileSync(
-          path.join(outputPath, 'templates', 'application.template.lint-test.js'),
-          { encoding: 'utf8' }
-        );
+    });
 
-        expect(contents).to.contain('Incorrect indentation for `div`');
-        expect(contents).to.contain('Incorrect indentation for `p`');
-        expect(contents).to.contain('HTML comment detected');
-      });
-  });
+    let outputPath = results.directory;
+    let contents = fs.readFileSync(
+      path.join(outputPath, 'templates', 'application.template.lint-test.js'),
+      { encoding: 'utf8' }
+    );
 
-  it('returns an empty string if no generateTestFile is provided', function() {
+    expect(contents).to.contain('Incorrect indentation for `div`');
+    expect(contents).to.contain('Incorrect indentation for `p`');
+    expect(contents).to.contain('HTML comment detected');
+  }));
+
+  it('returns an empty string if no generateTestFile is provided', co.wrap(function *() {
     let basePath = path.join(fixturePath, 'with-errors');
     let builder = makeBuilder(basePath);
 
-    return builder('app', {
+    let results = yield builder('app', {
       console: mockConsole
-    })
-      .then(results => {
-        let outputPath = results.directory;
-        let contents = fs.readFileSync(
-          path.join(outputPath, 'templates', 'application.template.lint-test.js'),
-          { encoding: 'utf8' }
-        );
+    });
 
-        expect(contents).to.equal('');
-      });
-  });
+    let outputPath = results.directory;
+    let contents = fs.readFileSync(
+      path.join(outputPath, 'templates', 'application.template.lint-test.js'),
+      { encoding: 'utf8' }
+    );
 
-  it('prints warnings to console', function() {
+    expect(contents).to.equal('');
+  }));
+
+  it('prints warnings to console', co.wrap(function *() {
     let basePath = path.join(fixturePath, 'with-errors');
     let builder = makeBuilder(basePath);
 
-    return builder('app', {
+    yield builder('app', {
       persist: false, // console messages are only printed when initially processed
       console: mockConsole,
       generateTestFile(moduleName, tests) {
         return tests[0].errorMessage;
       }
-    }).then(() => {
-      let combinedLog = mockConsole._logLines.join('\n');
-
-      expect(combinedLog).to.contain('Incorrect indentation for `div`');
-      expect(combinedLog).to.contain('Incorrect indentation for `p`');
-      expect(combinedLog).to.contain('HTML comment detected');
     });
-  });
 
-  it('prints warnings when bare-strings is not used with a localization addon present', function() {
+    let combinedLog = mockConsole._logLines.join('\n');
+
+    expect(combinedLog).to.contain('Incorrect indentation for `div`');
+    expect(combinedLog).to.contain('Incorrect indentation for `p`');
+    expect(combinedLog).to.contain('HTML comment detected');
+  }));
+
+  it('prints warnings when bare-strings is not used with a localization addon present', co.wrap(function *() {
     let basePath = path.join(fixturePath, 'no-bare-strings');
     let builder = makeBuilder(basePath);
 
@@ -111,7 +110,7 @@ describe('broccoli-template-linter', function() {
       isLocalizationFramework: true
     };
 
-    return builder('app', {
+    yield builder('app', {
       console: mockConsole,
       project: {
         addons: [
@@ -121,19 +120,19 @@ describe('broccoli-template-linter', function() {
         ]
       },
       generateTestFile() { }
-    }).then(() => {
-      let combinedLog = mockConsole._logLines.join('\n');
-
-      expect(combinedLog).to.contain('ember-intl');
-      expect(combinedLog).to.contain('The `bare-strings` rule must be configured when using a localization framework');
     });
-  });
 
-  it('does not print warning when bare-strings is not used when a localization addon is not present', function() {
+    let combinedLog = mockConsole._logLines.join('\n');
+
+    expect(combinedLog).to.contain('ember-intl');
+    expect(combinedLog).to.contain('The `bare-strings` rule must be configured when using a localization framework');
+  }));
+
+  it('does not print warning when bare-strings is not used when a localization addon is not present', co.wrap(function *() {
     let basePath = path.join(fixturePath, 'no-bare-strings');
     let builder = makeBuilder(basePath);
 
-    return builder('app', {
+    yield builder('app', {
       console: mockConsole,
       project: {
         addons: [
@@ -142,15 +141,15 @@ describe('broccoli-template-linter', function() {
         ]
       },
       generateTestFile() { }
-    }).then(() => {
-      let combinedLog = mockConsole._logLines.join('\n');
-
-      expect(combinedLog)
-        .to.not.contain('The `bare-strings` rule must be configured when using a localization framework');
     });
-  });
 
-  it('does not print warning when bare-strings is specified in config', function() {
+    let combinedLog = mockConsole._logLines.join('\n');
+
+    expect(combinedLog)
+      .to.not.contain('The `bare-strings` rule must be configured when using a localization framework');
+  }));
+
+  it('does not print warning when bare-strings is specified in config', co.wrap(function *() {
     let basePath = path.join(fixturePath, 'with-bare-strings');
     let builder = makeBuilder(basePath);
 
@@ -162,7 +161,7 @@ describe('broccoli-template-linter', function() {
       isLocalizationFramework: true
     };
 
-    return builder('app', {
+    yield builder('app', {
       console: mockConsole,
       project: {
         addons: [
@@ -172,11 +171,11 @@ describe('broccoli-template-linter', function() {
         ]
       },
       generateTestFile() { }
-    }).then(() => {
-      let combinedLog = mockConsole._logLines.join('\n');
-
-      expect(combinedLog)
-        .to.not.contain('The `bare-strings` rule must be configured when using a localization framework');
     });
-  });
+
+    let combinedLog = mockConsole._logLines.join('\n');
+
+    expect(combinedLog)
+      .to.not.contain('The `bare-strings` rule must be configured when using a localization framework');
+  }));
 });
