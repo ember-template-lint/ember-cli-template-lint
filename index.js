@@ -9,24 +9,24 @@ const PrintFailing = require('./lib/commands/print-failing');
 module.exports = {
   name: 'ember-cli-template-lint',
 
-  includedCommands: function() {
+  includedCommands() {
     return {
       'template-lint:print-failing': PrintFailing
     };
   },
 
-  lintTree: function(type, tree) {
+  lintTree(type, tree) {
     let checker = new VersionChecker(this);
     checker.for('ember-cli', 'npm').assertAbove('2.4.1');
 
     if (type === 'templates') {
       let ui = this.ui;
       let mockConsole = {
-        log: function(data) {
+        log(data) {
           ui.writeLine(data);
         },
 
-        error: function(data) {
+        error(data) {
           ui.writeLine(data, 'ERROR');
         }
       };
@@ -41,13 +41,13 @@ module.exports = {
     }
   },
 
-  setupPreprocessorRegistry: function(type, registry) {
+  setupPreprocessorRegistry(type, registry) {
     let RemoveConfigurationHtmlComments = require('./lib/plugins/remove-configuration-html-comments');
 
     registry.add('htmlbars-ast-plugin', {
       name: 'remove-configuration-html-comments',
       plugin: RemoveConfigurationHtmlComments(),
-      baseDir: function() {
+      baseDir() {
         return __dirname;
       }
     });

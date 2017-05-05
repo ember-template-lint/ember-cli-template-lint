@@ -24,7 +24,7 @@ describe('broccoli-template-linter', function() {
     return {
       _logLines: [],
 
-      log: function(data) {
+      log(data) {
         this._logLines.push(data);
       }
     };
@@ -48,7 +48,7 @@ describe('broccoli-template-linter', function() {
 
     return builder('app', {
       console: mockConsole,
-      generateTestFile: function(moduleName, tests) {
+      generateTestFile(moduleName, tests) {
         return tests[0].errorMessage;
       }
     })
@@ -90,7 +90,7 @@ describe('broccoli-template-linter', function() {
     return builder('app', {
       persist: false, // console messages are only printed when initially processed
       console: mockConsole,
-      generateTestFile: function(moduleName, tests) {
+      generateTestFile(moduleName, tests) {
         return tests[0].errorMessage;
       }
     })
@@ -121,7 +121,7 @@ describe('broccoli-template-linter', function() {
           localizationAddon
         ]
       },
-      generateTestFile: function() { }
+      generateTestFile() { }
     })
       .then(function() {
         let combinedLog = mockConsole._logLines.join('\n');
@@ -143,7 +143,7 @@ describe('broccoli-template-linter', function() {
           { name: 'ember-cli-template-lint' }
         ]
       },
-      generateTestFile: function() { }
+      generateTestFile() { }
     })
       .then(function() {
         let combinedLog = mockConsole._logLines.join('\n');
@@ -174,7 +174,7 @@ describe('broccoli-template-linter', function() {
           localizationAddon
         ]
       },
-      generateTestFile: function() { }
+      generateTestFile() { }
     })
       .then(function() {
         let combinedLog = mockConsole._logLines.join('\n');
