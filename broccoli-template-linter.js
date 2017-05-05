@@ -2,19 +2,19 @@
 
 /* eslint-env node */
 
-var Filter = require('broccoli-persistent-filter');
-var md5Hex = require('md5-hex');
-var stringify = require('json-stable-stringify');
-var chalk = require('chalk');
-var jsStringEscape = require('js-string-escape');
-var Linter = require('ember-template-lint');
-var debug = require('debug')('template-lint:broccoli');
-var projectLocalizationAddon = require('./lib/utils/project-localization-framework');
+const Filter = require('broccoli-persistent-filter');
+const md5Hex = require('md5-hex');
+const stringify = require('json-stable-stringify');
+const chalk = require('chalk');
+const jsStringEscape = require('js-string-escape');
+const Linter = require('ember-template-lint');
+const debug = require('debug')('template-lint:broccoli');
+const projectLocalizationAddon = require('./lib/utils/project-localization-framework');
 
 function TemplateLinter(inputNode, _options) {
   if (!(this instanceof TemplateLinter)) { return new TemplateLinter(inputNode, _options); }
 
-  var options = _options || {};
+  let options = _options || {};
   if (!options.hasOwnProperty('persist')) {
     options.persist = true;
   }
@@ -58,13 +58,13 @@ TemplateLinter.prototype.cacheKeyProcessString = function(string, relativePath) 
 };
 
 TemplateLinter.prototype.build = function () {
-  var self = this;
+  let self = this;
   self._errors = [];
 
   return Filter.prototype.build.apply(this, arguments)
     .finally(function() {
       if (self._errors.length > 0) {
-        var label = ' Template Linting Error' + (self._errors.length > 1 ? 's' : '');
+        let label = ' Template Linting Error' + (self._errors.length > 1 ? 's' : '');
         self._console.log('\n' + self._errors.join('\n'));
         self._console.log(chalk.yellow('===== ' + self._errors.length + label + '\n'));
       }
@@ -72,7 +72,7 @@ TemplateLinter.prototype.build = function () {
 };
 
 TemplateLinter.prototype.convertErrorToDisplayMessage = function(error) {
-  var message = error.rule + ': ' + error.message + ' (' + error.moduleId;
+  let message = error.rule + ': ' + error.message + ' (' + error.moduleId;
 
   if (error.line && error.column) {
     message = message + ' @ L' + error.line + ':C' + error.column;
@@ -88,21 +88,21 @@ TemplateLinter.prototype.convertErrorToDisplayMessage = function(error) {
 };
 
 TemplateLinter.prototype.processString = function(contents, relativePath) {
-  var errors = this.linter.verify({
+  let errors = this.linter.verify({
     source: contents,
     moduleId: relativePath.slice(0, -4)
   });
   errors = errors.filter(function(error) {
     return error.severity > 1;
   });
-  var passed = errors.length === 0;
-  var errorDisplay = errors.map(function(error) {
+  let passed = errors.length === 0;
+  let errorDisplay = errors.map(function(error) {
     return this.convertErrorToDisplayMessage(error);
   }, this)
         .join('\n');
 
 
-  var output = this._generateTestFile(
+  let output = this._generateTestFile(
     'TemplateLint - ' + relativePath,
     [{
       name: 'should pass TemplateLint',
@@ -120,10 +120,10 @@ TemplateLinter.prototype.processString = function(contents, relativePath) {
 };
 
 TemplateLinter.prototype.postProcess = function(results) {
-  var errors = results.errors;
+  let errors = results.errors;
 
-  for (var i = 0; i < errors.length; i++) {
-    var errorDisplay = this.convertErrorToDisplayMessage(errors[i]);
+  for (let i = 0; i < errors.length; i++) {
+    let errorDisplay = this.convertErrorToDisplayMessage(errors[i]);
     this._errors.push(chalk.red(errorDisplay));
   }
 
@@ -135,12 +135,12 @@ TemplateLinter.prototype.issueLocalizationWarningIfNeeded = function() {
     return;
   }
 
-  var project = this.options.project;
+  let project = this.options.project;
   if (!project) {
     return;
   }
 
-  var addon = projectLocalizationAddon(project);
+  let addon = projectLocalizationAddon(project);
 
   if (addon) {
     this._console.log(chalk.yellow(

@@ -1,14 +1,14 @@
 'use strict';
 
-var blueprintHelpers = require('ember-cli-blueprint-test-helpers/helpers');
-var setupTestHooks = blueprintHelpers.setupTestHooks;
-var emberNew = blueprintHelpers.emberNew;
-var emberGenerate = require('ember-cli-blueprint-test-helpers/lib/ember-generate');
-//var modifyPackages = blueprintHelpers.modifyPackages;
+const co = require('co');
+const blueprintHelpers = require('ember-cli-blueprint-test-helpers/helpers');
+const setupTestHooks = blueprintHelpers.setupTestHooks;
+const emberNew = blueprintHelpers.emberNew;
+const emberGenerate = require('ember-cli-blueprint-test-helpers/lib/ember-generate');
 
-var chai = require('ember-cli-blueprint-test-helpers/chai');
-var expect = chai.expect;
-var file = chai.file;
+const chai = require('ember-cli-blueprint-test-helpers/chai');
+const expect = chai.expect;
+const file = chai.file;
 
 describe('Acceptance: ember generate and destroy ember-cli-template-lint', function() {
   setupTestHooks(this);
@@ -22,29 +22,23 @@ describe('Acceptance: ember generate and destroy ember-cli-template-lint', funct
     delete process.env.FORCE_LOCALIZED_FOR_TESTING;
   });
 
-  it('ember-cli-template-lint without localization framework', function() {
-    var args = ['ember-cli-template-lint'];
+  it('ember-cli-template-lint without localization framework', co.wrap(function *() {
+    let args = ['ember-cli-template-lint'];
 
-    return emberNew()
-      .then(function() {
-        return emberGenerate(args);
-      })
-      .then(function() {
-        expect(file('.template-lintrc.js')).to.contain('extends: \'recommended\'');
-      });
-  });
+    yield emberNew();
+    yield emberGenerate(args);
 
-  it('ember-cli-template-lint with localization framework', function() {
+    expect(file('.template-lintrc.js')).to.contain('extends: \'recommended\'');
+  }));
+
+  it('ember-cli-template-lint with localization framework', co.wrap(function *() {
     process.env.FORCE_LOCALIZED_FOR_TESTING = true;
-    var args = ['ember-cli-template-lint'];
+    let args = ['ember-cli-template-lint'];
 
-    return emberNew()
-      .then(function() {
-        return emberGenerate(args);
-      })
-      .then(function() {
-        expect(file('.template-lintrc.js')).to.contain('extends: \'recommended\'');
-        expect(file('.template-lintrc.js')).to.contain('\'bare-strings\': true');
-      });
-  });
+    yield emberNew();
+    yield emberGenerate(args);
+
+    expect(file('.template-lintrc.js')).to.contain('extends: \'recommended\'');
+    expect(file('.template-lintrc.js')).to.contain('\'bare-strings\': true');
+  }));
 });

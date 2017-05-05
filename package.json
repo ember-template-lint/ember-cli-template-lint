@@ -44,6 +44,7 @@
     "broccoli-asset-rev": "^2.4.2",
     "broccoli-test-helpers": "0.0.9",
     "chai": "^3.5.0",
+    "co": "^4.6.0",
     "ember-ajax": "2.5.1",
     "ember-cli": "2.6.2",
     "ember-cli-app-version": "^2.0.0",
@@ -69,7 +70,7 @@
     "rimraf": "^2.5.2"
   },
   "engines": {
-    "node": ">= 0.12"
+    "node": ">= 4"
   },
   "ember-addon": {
     "configPath": "tests/dummy/config",
