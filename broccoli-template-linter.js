@@ -6,10 +6,10 @@ const Filter = require('broccoli-persistent-filter');
 const md5Hex = require('md5-hex');
 const stringify = require('json-stable-stringify');
 const chalk = require('chalk');
-const jsStringEscape = require('js-string-escape');
 const Linter = require('ember-template-lint');
 const debug = require('debug')('template-lint:broccoli');
 const projectLocalizationAddon = require('./lib/utils/project-localization-framework');
+const testGenerators = require('aot-test-generators');
 
 function TemplateLinter(inputNode, _options) {
   if (!(this instanceof TemplateLinter)) { return new TemplateLinter(inputNode, _options); }
@@ -28,9 +28,16 @@ function TemplateLinter(inputNode, _options) {
   this.options = options;
   this._console = this.options.console || console;
   this._templatercConfig = undefined;
-  this._generateTestFile = this.options.generateTestFile || function() {
-    return '';
-  };
+
+  if (this.options.testGenerator) {
+    let testGenerator = testGenerators[this.options.testGenerator];
+    if (!testGenerator) {
+      throw new Error(`No test generator found for "testGenerator: ${this.options.testGenerator}"`);
+    }
+
+    this._testGenerator = testGenerator;
+  }
+
   this.linter = new Linter(options);
 
   debug('Linter config: %s', JSON.stringify(this.linter.config));
@@ -51,7 +58,7 @@ TemplateLinter.prototype.baseDir = function() {
 TemplateLinter.prototype.cacheKeyProcessString = function(string, relativePath) {
   return md5Hex([
     stringify(this.linter.config),
-    this._generateTestFile.toString(),
+    this.options.testGenerator || '',
     string,
     relativePath
   ]);
@@ -101,15 +108,15 @@ TemplateLinter.prototype.processString = function(contents, relativePath) {
   }, this)
         .join('\n');
 
-
-  let output = this._generateTestFile(
-    'TemplateLint - ' + relativePath,
-    [{
-      name: 'should pass TemplateLint',
-      passed: passed,
-      errorMessage: jsStringEscape(relativePath + ' should pass TemplateLint.\n' + errorDisplay)
-    }]
-  );
+  let output = '';
+  if (this._testGenerator) {
+    output = [
+      this._testGenerator.suiteHeader(`TemplateLint | ${relativePath}`),
+      this._testGenerator.test('should pass TemplateLint', passed,
+        `${relativePath} should pass TemplateLint.\n\n${errorDisplay}`),
+      this._testGenerator.suiteFooter()
+    ].join('');
+  }
 
   debug('Found %s errors for %s with \ncontents: \n%s\nerrors: \n%s', errors.length, relativePath, contents, errorDisplay);
 

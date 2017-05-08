@@ -34,14 +34,12 @@ describe('broccoli-template-linter', function() {
     };
   }
 
-  it('generates a test file if a "generateTestFile" option is provided', co.wrap(function *() {
+  it('generates a QUnit test file if "testGenerator: qunit" is provided', co.wrap(function *() {
     input.copy(`${fixturePath}/with-errors`);
 
     subject = new TemplateLinter(`${input.path()}/app`, {
       console: mockConsole,
-      generateTestFile(moduleName, tests) {
-        return tests[0].errorMessage;
-      }
+      testGenerator: 'qunit'
     });
 
     output = createBuilder(subject);
@@ -52,9 +50,57 @@ describe('broccoli-template-linter', function() {
     expect(result.templates).to.have.property('application.template.lint-test.js');
 
     let contents = result.templates['application.template.lint-test.js'];
-    expect(contents).to.contain('Incorrect indentation for `div`');
-    expect(contents).to.contain('Incorrect indentation for `p`');
-    expect(contents).to.contain('HTML comment detected');
+    expect(contents).to.equal([
+      'QUnit.module(\'TemplateLint | templates/application.hbs\');',
+      'QUnit.test(\'should pass TemplateLint\', function(assert) {',
+      '  assert.expect(1);',
+      (
+      '  assert.ok(false, \'templates/application.hbs should pass TemplateLint.\\n\\n' +
+      'block-indentation: Incorrect indentation for `div` beginning at L2:C0. Expected `</div>` ending at L5:C9 to be at an indentation of 0 but was found at 3. (templates/application @ L5:C9): \\n' +
+      '`<div>\\n  <p>\\n </p>\\n   </div>`\\n' +
+      'block-indentation: Incorrect indentation for `p` beginning at L3:C2. Expected `</p>` ending at L4:C5 to be at an indentation of 2 but was found at 1. (templates/application @ L4:C5): \\n' +
+      '`<p>\\n </p>`\\n' +
+      'html-comments: HTML comment detected (templates/application): \\n' +
+      '`<!-- silly html comments -->`\');'
+      ),
+      `});\n`
+    ].join('\n'));
+  }));
+
+  it('generates a Mocha test file if "testGenerator: mocha" is provided', co.wrap(function *() {
+    input.copy(`${fixturePath}/with-errors`);
+
+    subject = new TemplateLinter(`${input.path()}/app`, {
+      console: mockConsole,
+      testGenerator: 'mocha'
+    });
+
+    output = createBuilder(subject);
+    yield output.build();
+
+    let result = output.read();
+    expect(result).to.have.property('templates');
+    expect(result.templates).to.have.property('application.template.lint-test.js');
+
+    let contents = result.templates['application.template.lint-test.js'];
+    expect(contents).to.equal([
+      'describe(\'TemplateLint | templates/application.hbs\', function() {',
+      '  it(\'should pass TemplateLint\', function() {',
+      '    // test failed',
+      (
+      '    var error = new chai.AssertionError(\'templates/application.hbs should pass TemplateLint.\\n\\n' +
+      'block-indentation: Incorrect indentation for `div` beginning at L2:C0. Expected `</div>` ending at L5:C9 to be at an indentation of 0 but was found at 3. (templates/application @ L5:C9): \\n' +
+      '`<div>\\n  <p>\\n </p>\\n   </div>`\\n' +
+      'block-indentation: Incorrect indentation for `p` beginning at L3:C2. Expected `</p>` ending at L4:C5 to be at an indentation of 2 but was found at 1. (templates/application @ L4:C5): \\n' +
+      '`<p>\\n </p>`\\n' +
+      'html-comments: HTML comment detected (templates/application): \\n' +
+      '`<!-- silly html comments -->`\');'
+      ),
+      '    error.stack = undefined;',
+      '    throw error;',
+      '  });',
+      '});\n'
+    ].join('\n'));
   }));
 
   it('generates empty test files if no "generateTestFile" option is provided', co.wrap(function *() {

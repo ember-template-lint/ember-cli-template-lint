@@ -55,7 +55,6 @@ module.exports = {
       return new TemplateLinter(tree, {
         annotation: 'TemplateLinter',
         templatercPath: this.project.root + '/.template-lintrc',
-        generateTestFile: this.project.generateTestFile,
         testGenerator: this._options.testGenerator,
         console: mockConsole,
         project: this.project
