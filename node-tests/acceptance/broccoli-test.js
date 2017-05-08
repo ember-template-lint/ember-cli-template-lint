@@ -80,10 +80,7 @@ describe('broccoli-template-linter', function() {
 
     subject = new TemplateLinter(`${input.path()}/app`, {
       persist: false, // console messages are only printed when initially processed
-      console: mockConsole,
-      generateTestFile(moduleName, tests) {
-        return tests[0].errorMessage;
-      }
+      console: mockConsole
     });
 
     output = createBuilder(subject);
@@ -112,8 +109,7 @@ describe('broccoli-template-linter', function() {
           { name: 'ember-cli-template-lint' },
           localizationAddon
         ]
-      },
-      generateTestFile() { }
+      }
     });
 
     output = createBuilder(subject);
@@ -135,8 +131,7 @@ describe('broccoli-template-linter', function() {
           { name: 'ember-cli-qunit' },
           { name: 'ember-cli-template-lint' }
         ]
-      },
-      generateTestFile() { }
+      }
     });
 
     output = createBuilder(subject);
@@ -167,8 +162,7 @@ describe('broccoli-template-linter', function() {
           { name: 'ember-cli-template-lint' },
           localizationAddon
         ]
-      },
-      generateTestFile() { }
+      }
     });
 
     output = createBuilder(subject);
