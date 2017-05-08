@@ -52,10 +52,11 @@ module.exports = {
         }
       };
 
-      return new TemplateLinter(tree, {
+      return TemplateLinter.create(tree, {
         annotation: 'TemplateLinter',
         templatercPath: this.project.root + '/.template-lintrc',
         testGenerator: this._options.testGenerator,
+        group: (this._options.group !== false) ? type : undefined,
         console: mockConsole,
         project: this.project
       });

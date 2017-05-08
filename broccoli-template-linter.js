@@ -10,6 +10,8 @@ const Linter = require('ember-template-lint');
 const debug = require('debug')('template-lint:broccoli');
 const projectLocalizationAddon = require('./lib/utils/project-localization-framework');
 const testGenerators = require('aot-test-generators');
+const testGeneratorNames = Object.keys(testGenerators);
+const concat = require('broccoli-concat');
 
 function TemplateLinter(inputNode, _options) {
   if (!(this instanceof TemplateLinter)) { return new TemplateLinter(inputNode, _options); }
@@ -59,6 +61,7 @@ TemplateLinter.prototype.cacheKeyProcessString = function(string, relativePath) 
   return md5Hex([
     stringify(this.linter.config),
     this.options.testGenerator || '',
+    this.options.group || '',
     string,
     relativePath
   ]);
@@ -110,12 +113,18 @@ TemplateLinter.prototype.processString = function(contents, relativePath) {
 
   let output = '';
   if (this._testGenerator) {
-    output = [
-      this._testGenerator.suiteHeader(`TemplateLint | ${relativePath}`),
-      this._testGenerator.test('should pass TemplateLint', passed,
-        `${relativePath} should pass TemplateLint.\n\n${errorDisplay}`),
-      this._testGenerator.suiteFooter()
-    ].join('');
+    if (this.options.group) {
+      output = this._testGenerator.test(relativePath, passed,
+        `${relativePath} should pass TemplateLint.\n\n${errorDisplay}`);
+
+    } else {
+      output = [
+        this._testGenerator.suiteHeader(`TemplateLint | ${relativePath}`),
+        this._testGenerator.test('should pass TemplateLint', passed,
+          `${relativePath} should pass TemplateLint.\n\n${errorDisplay}`),
+        this._testGenerator.suiteFooter()
+      ].join('');
+    }
   }
 
   debug('Found %s errors for %s with \ncontents: \n%s\nerrors: \n%s', errors.length, relativePath, contents, errorDisplay);
@@ -154,6 +163,34 @@ TemplateLinter.prototype.issueLocalizationWarningIfNeeded = function() {
       'The `bare-strings` rule must be configured when using a localization framework (`' + addon.name + '`). To prevent this warning, add the following to your `.template-lintrc.js`:\n\n  rules: {\n    \'bare-strings\': true\n  }'
     ));
   }
+};
+
+TemplateLinter.create = function(inputNode, options) {
+  options = options || {};
+
+  if (!options.group) {
+    return new TemplateLinter(inputNode, options);
+  }
+
+  if (testGeneratorNames.indexOf(options.testGenerator) === -1) {
+    throw new Error(`The "group" options can only be used with a "testGenerator" option of: ${testGeneratorNames}`);
+  }
+
+  let testGenerator = testGenerators[options.testGenerator];
+
+  let header = testGenerator.suiteHeader(`TemplateLint | ${options.group}`);
+  let footer = testGenerator.suiteFooter();
+
+  let lint = new TemplateLinter(inputNode, options);
+
+  return concat(lint, {
+    outputFile: `/${options.group}.template.lint-test.js`,
+    header,
+    inputFiles: ['**/*.template.lint-test.js'],
+    footer,
+    sourceMapConfig: { enabled: false },
+    allowNone: true
+  });
 };
 
 module.exports = TemplateLinter;
