@@ -34,7 +34,7 @@ describe('broccoli-template-linter', function() {
     };
   }
 
-  it('uses provided generateTestFile to return a test file', co.wrap(function *() {
+  it('generates a test file if a "generateTestFile" option is provided', co.wrap(function *() {
     input.copy(`${fixturePath}/with-errors`);
 
     subject = new TemplateLinter(`${input.path()}/app`, {
@@ -57,7 +57,7 @@ describe('broccoli-template-linter', function() {
     expect(contents).to.contain('HTML comment detected');
   }));
 
-  it('returns an empty string if no generateTestFile is provided', co.wrap(function *() {
+  it('generates empty test files if no "generateTestFile" option is provided', co.wrap(function *() {
     input.copy(`${fixturePath}/with-errors`);
 
     subject = new TemplateLinter(`${input.path()}/app`, {
