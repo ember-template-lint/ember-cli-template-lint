@@ -9,6 +9,27 @@ const PrintFailing = require('./lib/commands/print-failing');
 module.exports = {
   name: 'ember-cli-template-lint',
 
+  included: function (app) {
+    this._super.included.apply(this, arguments);
+    this._options = app.options['ember-cli-template-lint'] || {};
+
+    if (!('testGenerator' in this._options)) {
+      let VersionChecker = require('ember-cli-version-checker');
+      let checker = new VersionChecker(this);
+
+      if (checker.for('ember-cli-qunit', 'npm').satisfies('*')) {
+        this._options.testGenerator = 'qunit';
+      } else if (checker.for('ember-cli-mocha', 'npm').satisfies('*')) {
+        this._options.testGenerator = 'mocha';
+      } else {
+        this.ui.warn(
+          '[ember-cli-template-lint] Test framework detection was unsuccessful. ' +
+          'Please provide a "testGenerator" option explicitly to enable the test generators.'
+        );
+      }
+    }
+  },
+
   includedCommands() {
     return {
       'template-lint:print-failing': PrintFailing
@@ -35,6 +56,7 @@ module.exports = {
         annotation: 'TemplateLinter',
         templatercPath: this.project.root + '/.template-lintrc',
         generateTestFile: this.project.generateTestFile,
+        testGenerator: this._options.testGenerator,
         console: mockConsole,
         project: this.project
       });
