@@ -103,7 +103,7 @@ describe('broccoli-template-linter', function() {
     ].join('\n'));
   }));
 
-  it('generates a QUnit test file if "testGenerator: qunit" and "group: foo" are provided', co.wrap(function *() {
+  it('generates a QUnit test file if "testGenerator: qunit" and "groupName: foo" are provided', co.wrap(function *() {
     this.timeout(10000);
 
     input.copy(`${fixturePath}/with-errors`);
@@ -111,7 +111,7 @@ describe('broccoli-template-linter', function() {
     subject = TemplateLinter.create(`${input.path()}/app`, {
       console: mockConsole,
       testGenerator: 'qunit',
-      group: 'foo'
+      groupName: 'foo'
     });
 
     output = createBuilder(subject);
@@ -139,13 +139,13 @@ describe('broccoli-template-linter', function() {
     ].join('\n'));
   }));
 
-  it('generates a Mocha test file if "testGenerator: mocha" and "group: foo" are provided', co.wrap(function *() {
+  it('generates a Mocha test file if "testGenerator: mocha" and "groupName: foo" are provided', co.wrap(function *() {
     input.copy(`${fixturePath}/with-errors`);
 
     subject = TemplateLinter.create(`${input.path()}/app`, {
       console: mockConsole,
       testGenerator: 'mocha',
-      group: 'foo'
+      groupName: 'foo'
     });
 
     output = createBuilder(subject);

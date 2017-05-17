@@ -61,7 +61,7 @@ TemplateLinter.prototype.cacheKeyProcessString = function(string, relativePath) 
   return md5Hex([
     stringify(this.linter.config),
     this.options.testGenerator || '',
-    this.options.group || '',
+    this.options.groupName || '',
     string,
     relativePath
   ]);
@@ -113,7 +113,7 @@ TemplateLinter.prototype.processString = function(contents, relativePath) {
 
   let output = '';
   if (this._testGenerator) {
-    if (this.options.group) {
+    if (this.options.groupName) {
       output = this._testGenerator.test(relativePath, passed,
         `${relativePath} should pass TemplateLint.\n\n${errorDisplay}`);
 
@@ -168,23 +168,23 @@ TemplateLinter.prototype.issueLocalizationWarningIfNeeded = function() {
 TemplateLinter.create = function(inputNode, options) {
   options = options || {};
 
-  if (!options.group) {
+  if (!options.groupName) {
     return new TemplateLinter(inputNode, options);
   }
 
   if (testGeneratorNames.indexOf(options.testGenerator) === -1) {
-    throw new Error(`The "group" options can only be used with a "testGenerator" option of: ${testGeneratorNames}`);
+    throw new Error(`The "groupName" options can only be used with a "testGenerator" option of: ${testGeneratorNames}`);
   }
 
   let testGenerator = testGenerators[options.testGenerator];
 
-  let header = testGenerator.suiteHeader(`TemplateLint | ${options.group}`);
+  let header = testGenerator.suiteHeader(`TemplateLint | ${options.groupName}`);
   let footer = testGenerator.suiteFooter();
 
   let lint = new TemplateLinter(inputNode, options);
 
   return concat(lint, {
-    outputFile: `/${options.group}.template.lint-test.js`,
+    outputFile: `/${options.groupName}.template.lint-test.js`,
     header,
     inputFiles: ['**/*.template.lint-test.js'],
     footer,
