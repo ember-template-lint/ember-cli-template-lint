@@ -178,7 +178,12 @@ TemplateLinter.create = function(inputNode, options) {
 
   let testGenerator = testGenerators[options.testGenerator];
 
-  let header = testGenerator.suiteHeader(`TemplateLint | ${options.groupName}`);
+  let headerName = 'TemplateLint';
+  if (options.groupName !== 'templates') {
+    headerName += ` | ${options.groupName}`;
+  }
+
+  let header = testGenerator.suiteHeader(headerName);
   let footer = testGenerator.suiteFooter();
 
   let lint = new TemplateLinter(inputNode, options);
