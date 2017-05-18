@@ -6,10 +6,12 @@ const Filter = require('broccoli-persistent-filter');
 const md5Hex = require('md5-hex');
 const stringify = require('json-stable-stringify');
 const chalk = require('chalk');
-const jsStringEscape = require('js-string-escape');
 const Linter = require('ember-template-lint');
 const debug = require('debug')('template-lint:broccoli');
 const projectLocalizationAddon = require('./lib/utils/project-localization-framework');
+const testGenerators = require('aot-test-generators');
+const testGeneratorNames = Object.keys(testGenerators);
+const concat = require('broccoli-concat');
 
 function TemplateLinter(inputNode, _options) {
   if (!(this instanceof TemplateLinter)) { return new TemplateLinter(inputNode, _options); }
@@ -28,9 +30,16 @@ function TemplateLinter(inputNode, _options) {
   this.options = options;
   this._console = this.options.console || console;
   this._templatercConfig = undefined;
-  this._generateTestFile = this.options.generateTestFile || function() {
-    return '';
-  };
+
+  if (this.options.testGenerator) {
+    let testGenerator = testGenerators[this.options.testGenerator];
+    if (!testGenerator) {
+      throw new Error(`No test generator found for "testGenerator: ${this.options.testGenerator}"`);
+    }
+
+    this._testGenerator = testGenerator;
+  }
+
   this.linter = new Linter(options);
 
   debug('Linter config: %s', JSON.stringify(this.linter.config));
@@ -51,7 +60,8 @@ TemplateLinter.prototype.baseDir = function() {
 TemplateLinter.prototype.cacheKeyProcessString = function(string, relativePath) {
   return md5Hex([
     stringify(this.linter.config),
-    this._generateTestFile.toString(),
+    this.options.testGenerator || '',
+    this.options.groupName || '',
     string,
     relativePath
   ]);
@@ -101,15 +111,21 @@ TemplateLinter.prototype.processString = function(contents, relativePath) {
   }, this)
         .join('\n');
 
+  let output = '';
+  if (this._testGenerator) {
+    if (this.options.groupName) {
+      output = this._testGenerator.test(relativePath, passed,
+        `${relativePath} should pass TemplateLint.\n\n${errorDisplay}`);
 
-  let output = this._generateTestFile(
-    'TemplateLint - ' + relativePath,
-    [{
-      name: 'should pass TemplateLint',
-      passed: passed,
-      errorMessage: jsStringEscape(relativePath + ' should pass TemplateLint.\n' + errorDisplay)
-    }]
-  );
+    } else {
+      output = [
+        this._testGenerator.suiteHeader(`TemplateLint | ${relativePath}`),
+        this._testGenerator.test('should pass TemplateLint', passed,
+          `${relativePath} should pass TemplateLint.\n\n${errorDisplay}`),
+        this._testGenerator.suiteFooter()
+      ].join('');
+    }
+  }
 
   debug('Found %s errors for %s with \ncontents: \n%s\nerrors: \n%s', errors.length, relativePath, contents, errorDisplay);
 
@@ -147,6 +163,39 @@ TemplateLinter.prototype.issueLocalizationWarningIfNeeded = function() {
       'The `bare-strings` rule must be configured when using a localization framework (`' + addon.name + '`). To prevent this warning, add the following to your `.template-lintrc.js`:\n\n  rules: {\n    \'bare-strings\': true\n  }'
     ));
   }
+};
+
+TemplateLinter.create = function(inputNode, options) {
+  options = options || {};
+
+  if (!options.groupName) {
+    return new TemplateLinter(inputNode, options);
+  }
+
+  if (testGeneratorNames.indexOf(options.testGenerator) === -1) {
+    throw new Error(`The "groupName" options can only be used with a "testGenerator" option of: ${testGeneratorNames}`);
+  }
+
+  let testGenerator = testGenerators[options.testGenerator];
+
+  let headerName = 'TemplateLint';
+  if (options.groupName !== 'templates') {
+    headerName += ` | ${options.groupName}`;
+  }
+
+  let header = testGenerator.suiteHeader(headerName);
+  let footer = testGenerator.suiteFooter();
+
+  let lint = new TemplateLinter(inputNode, options);
+
+  return concat(lint, {
+    outputFile: `/${options.groupName}.template.lint-test.js`,
+    header,
+    inputFiles: ['**/*.template.lint-test.js'],
+    footer,
+    sourceMapConfig: { enabled: false },
+    allowNone: true
+  });
 };
 
 module.exports = TemplateLinter;
