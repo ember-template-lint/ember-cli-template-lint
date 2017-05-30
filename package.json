@@ -39,7 +39,7 @@
     "hash-for-dep": "^1.0.2",
     "json-stable-stringify": "^1.0.1",
     "md5-hex": "^1.2.1",
-    "walk-sync": "^0.3.0"
+    "walk-sync": "^0.3.2"
   },
   "devDependencies": {
     "broccoli-asset-rev": "^2.4.2",
