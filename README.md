@@ -1,5 +1,7 @@
 # ember-cli-template-lint
 
+[![Greenkeeper badge](https://badges.greenkeeper.io/rwjblue/ember-cli-template-lint.svg)](https://greenkeeper.io/)
+
 [![Build Status](https://travis-ci.org/rwjblue/ember-cli-template-lint.svg?branch=master)](https://travis-ci.org/rwjblue/ember-cli-template-lint)
 
 ember-cli-template-lint will lint your templates and add a test for each asserting
