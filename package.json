@@ -30,6 +30,7 @@
     "aot-test-generators": "^0.1.0",
     "broccoli-concat": "^3.2.2",
     "broccoli-persistent-filter": "^1.2.0",
+    "chai-as-promised": "^7.0.0",
     "chalk": "^1.1.1",
     "debug": "^2.2.0",
     "ember-cli-babel": "^6.1.0",
