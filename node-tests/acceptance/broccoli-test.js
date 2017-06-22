@@ -63,7 +63,7 @@ describe('broccoli-template-linter', function() {
       'html-comments: HTML comment detected (templates/application): \\n' +
       '`<!-- silly html comments -->`\');'
       ),
-      `});\n`
+      '});\n'
     ].join('\n'));
   }));
 
