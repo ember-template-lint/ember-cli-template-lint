@@ -2042,9 +2042,9 @@ ember-router-generator@^1.0.0:
   dependencies:
     recast "^0.11.3"
 
-ember-template-lint@^0.7.0:
-  version "0.7.0"
-  resolved "https://registry.yarnpkg.com/ember-template-lint/-/ember-template-lint-0.7.0.tgz#cef846cfa167c812c4d9203cb9971a2eded40ec9"
+ember-template-lint@^0.7.2:
+  version "0.7.2"
+  resolved "https://registry.yarnpkg.com/ember-template-lint/-/ember-template-lint-0.7.2.tgz#63ba0b7614076ba0c8a786de07eb2e7e0fccdd3e"
   dependencies:
     "@glimmer/compiler" "^0.25.1"
     "@glimmer/syntax" "^0.25.1"
