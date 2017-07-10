@@ -33,7 +33,7 @@
     "chalk": "^1.1.1",
     "debug": "^2.6.8",
     "ember-cli-version-checker": "^2.0.0",
-    "ember-template-lint": "^0.7.0",
+    "ember-template-lint": "^0.7.2",
     "json-stable-stringify": "^1.0.1",
     "md5-hex": "^2.0.0",
     "walk-sync": "^0.3.2"
