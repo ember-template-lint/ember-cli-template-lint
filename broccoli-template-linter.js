@@ -50,7 +50,7 @@ function TemplateLinter(inputNode, _options) {
 TemplateLinter.prototype = Object.create(Filter.prototype);
 TemplateLinter.prototype.constructor = TemplateLinter;
 
-TemplateLinter.prototype.extensions = ['hbs'];
+TemplateLinter.prototype.extensions = ['hbs', 'handlebars'];
 TemplateLinter.prototype.targetExtension = 'template.lint-test.js';
 
 TemplateLinter.prototype.baseDir = function() {

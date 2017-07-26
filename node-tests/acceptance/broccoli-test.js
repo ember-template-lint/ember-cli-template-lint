@@ -293,4 +293,20 @@ describe('broccoli-template-linter', function() {
     expect(combinedLog)
       .to.not.contain('The `bare-strings` rule must be configured when using a localization framework');
   }));
+
+  it('generates tests for .handlebars files', co.wrap(function *() {
+    input.copy(`${fixturePath}/handlebars-extension`);
+
+    subject = TemplateLinter.create(`${input.path()}/app`, {
+      console: mockConsole,
+      testGenerator: 'qunit'
+    });
+
+    output = createBuilder(subject);
+    yield output.build();
+
+    let result = output.read();
+    expect(result).to.have.property('templates');
+    expect(result.templates).to.have.property('application.template.lint-test.js');
+  }));
 });
