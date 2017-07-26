@@ -15,7 +15,7 @@ module.exports = {
 
     if (!('testGenerator' in this._options)) {
       let VersionChecker = require('ember-cli-version-checker');
-      let checker = new VersionChecker(this);
+      let checker = new VersionChecker(this.project);
 
       if (checker.for('ember-cli-qunit', 'npm').satisfies('*')) {
         this._options.testGenerator = 'qunit';
