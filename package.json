@@ -36,6 +36,7 @@
     "ember-template-lint": "^0.8.0",
     "json-stable-stringify": "^1.0.1",
     "md5-hex": "^2.0.0",
+    "strip-ansi": "^4.0.0",
     "walk-sync": "^0.3.2"
   },
   "devDependencies": {

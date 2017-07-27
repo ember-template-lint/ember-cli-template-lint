@@ -12,6 +12,7 @@ const projectLocalizationAddon = require('./lib/utils/project-localization-frame
 const testGenerators = require('aot-test-generators');
 const testGeneratorNames = Object.keys(testGenerators);
 const concat = require('broccoli-concat');
+const stripAnsi = require('strip-ansi');
 
 function TemplateLinter(inputNode, _options) {
   if (!(this instanceof TemplateLinter)) { return new TemplateLinter(inputNode, _options); }
@@ -91,39 +92,36 @@ TemplateLinter.prototype.processString = function(contents, relativePath) {
   });
 
   let passed = errors.length === 0;
-  let errorDisplay = Linter.errorsToMessages(relativePath, errors);
+  let consoleOutput = Linter.errorsToMessages(relativePath, errors);
+  let testOutput = stripAnsi(consoleOutput);
 
   let output = '';
   if (this._testGenerator) {
     if (this.options.groupName) {
       output = this._testGenerator.test(relativePath, passed,
-        `${relativePath} should pass TemplateLint.\n\n${errorDisplay}`);
+        `${relativePath} should pass TemplateLint.\n\n${testOutput}`);
 
     } else {
       output = [
         this._testGenerator.suiteHeader(`TemplateLint | ${relativePath}`),
         this._testGenerator.test('should pass TemplateLint', passed,
-          `${relativePath} should pass TemplateLint.\n\n${errorDisplay}`),
+          `${relativePath} should pass TemplateLint.\n\n${testOutput}`),
         this._testGenerator.suiteFooter()
       ].join('');
     }
   }
 
-  debug('Found %s errors for %s with \ncontents: \n%s\nerrors: \n%s', errors.length, relativePath, contents, errorDisplay);
+  debug('Found %s errors for %s with \ncontents: \n%s\nerrors: \n%s', errors.length, relativePath, contents, consoleOutput);
 
   return {
-    errors: errors,
-    output: output
+    errors,
+    consoleOutput,
+    output
   };
 };
 
-TemplateLinter.prototype.postProcess = function(results, relativePath) {
-  let errors = results.errors;
-
-  for (let i = 0; i < errors.length; i++) {
-    let errorDisplay = Linter.errorsToMessages(relativePath, errors);
-    this._errors.push(chalk.red(errorDisplay));
-  }
+TemplateLinter.prototype.postProcess = function(results) {
+  this._errors.push(results.consoleOutput);
 
   return results;
 };
