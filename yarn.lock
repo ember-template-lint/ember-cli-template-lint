@@ -2090,9 +2090,9 @@ ember-router-generator@^1.0.0:
   dependencies:
     recast "^0.11.3"
 
-ember-template-lint@^0.7.2:
-  version "0.7.4"
-  resolved "https://registry.yarnpkg.com/ember-template-lint/-/ember-template-lint-0.7.4.tgz#dbedfb5323ebc9267c87158ce7da16f9e837b915"
+ember-template-lint@^0.8.0:
+  version "0.8.0"
+  resolved "https://registry.yarnpkg.com/ember-template-lint/-/ember-template-lint-0.8.0.tgz#bf5a95625e692f36605d32aaa331b098ce05d48f"
   dependencies:
     "@glimmer/compiler" "^0.25.1"
     "@glimmer/syntax" "^0.25.1"
@@ -2777,7 +2777,7 @@ glob-parent@^2.0.0:
   dependencies:
     is-glob "^2.0.0"
 
-glob@7.1.1, glob@^7.0.3, glob@^7.0.4, glob@^7.0.5, glob@^7.1.0:
+glob@7.1.1, glob@^7.0.4, glob@^7.0.5:
   version "7.1.1"
   resolved "https://registry.yarnpkg.com/glob/-/glob-7.1.1.tgz#805211df04faaf1c63a3600306cdf5ade50b2ec8"
   dependencies:
@@ -2807,7 +2807,7 @@ glob@^5.0.10:
     once "^1.3.0"
     path-is-absolute "^1.0.0"
 
-glob@^7.1.2:
+glob@^7.0.3, glob@^7.1.0, glob@^7.1.2:
   version "7.1.2"
   resolved "https://registry.yarnpkg.com/glob/-/glob-7.1.2.tgz#c19c9df9a028702d678612384a6552404c636d15"
   dependencies:
