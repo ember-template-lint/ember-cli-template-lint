@@ -1,6 +1,12 @@
 Changelog
 =========
 
+## v0.7.1
+
+- Update dependencies.
+- Update ember-template-lint to 0.8.0 which provides a much nicer ESLint-like console output.
+- Add `.handlebars` extension to the list of files to process.
+
 ## v0.5.2
 
 - Update test file generation to use proper file extension. This allows usage of the `Disable Linting` checkbox
