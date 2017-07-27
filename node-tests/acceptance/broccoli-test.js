@@ -55,13 +55,13 @@ describe('broccoli-template-linter', function() {
       'QUnit.test(\'should pass TemplateLint\', function(assert) {',
       '  assert.expect(1);',
       (
-      '  assert.ok(false, \'templates/application.hbs should pass TemplateLint.\\n\\n' +
-      'block-indentation: Incorrect indentation for `div` beginning at L2:C0. Expected `</div>` ending at L5:C9 to be at an indentation of 0 but was found at 3. (templates/application @ L5:C9): \\n' +
-      '`<div>\\n  <p>\\n </p>\\n   </div>`\\n' +
-      'block-indentation: Incorrect indentation for `p` beginning at L3:C2. Expected `</p>` ending at L4:C5 to be at an indentation of 2 but was found at 1. (templates/application @ L4:C5): \\n' +
-      '`<p>\\n </p>`\\n' +
-      'html-comments: HTML comment detected (templates/application): \\n' +
-      '`<!-- silly html comments -->`\');'
+        '  assert.ok(false, \'templates/application.hbs should pass TemplateLint.\\n\\n' +
+        'block-indentation: Incorrect indentation for `div` beginning at L2:C0. Expected `</div>` ending at L5:C9 to be at an indentation of 0 but was found at 3. (templates/application @ L5:C9): \\n' +
+        '`<div>\\n  <p>\\n </p>\\n   </div>`\\n' +
+        'block-indentation: Incorrect indentation for `p` beginning at L3:C2. Expected `</p>` ending at L4:C5 to be at an indentation of 2 but was found at 1. (templates/application @ L4:C5): \\n' +
+        '`<p>\\n </p>`\\n' +
+        'html-comments: HTML comment detected (templates/application): \\n' +
+        '`<!-- silly html comments -->`\');'
       ),
       '});\n'
     ].join('\n'));
@@ -88,13 +88,13 @@ describe('broccoli-template-linter', function() {
       '  it(\'should pass TemplateLint\', function() {',
       '    // test failed',
       (
-      '    var error = new chai.AssertionError(\'templates/application.hbs should pass TemplateLint.\\n\\n' +
-      'block-indentation: Incorrect indentation for `div` beginning at L2:C0. Expected `</div>` ending at L5:C9 to be at an indentation of 0 but was found at 3. (templates/application @ L5:C9): \\n' +
-      '`<div>\\n  <p>\\n </p>\\n   </div>`\\n' +
-      'block-indentation: Incorrect indentation for `p` beginning at L3:C2. Expected `</p>` ending at L4:C5 to be at an indentation of 2 but was found at 1. (templates/application @ L4:C5): \\n' +
-      '`<p>\\n </p>`\\n' +
-      'html-comments: HTML comment detected (templates/application): \\n' +
-      '`<!-- silly html comments -->`\');'
+        '    var error = new chai.AssertionError(\'templates/application.hbs should pass TemplateLint.\\n\\n' +
+        'block-indentation: Incorrect indentation for `div` beginning at L2:C0. Expected `</div>` ending at L5:C9 to be at an indentation of 0 but was found at 3. (templates/application @ L5:C9): \\n' +
+        '`<div>\\n  <p>\\n </p>\\n   </div>`\\n' +
+        'block-indentation: Incorrect indentation for `p` beginning at L3:C2. Expected `</p>` ending at L4:C5 to be at an indentation of 2 but was found at 1. (templates/application @ L4:C5): \\n' +
+        '`<p>\\n </p>`\\n' +
+        'html-comments: HTML comment detected (templates/application): \\n' +
+        '`<!-- silly html comments -->`\');'
       ),
       '    error.stack = undefined;',
       '    throw error;',
@@ -127,13 +127,13 @@ describe('broccoli-template-linter', function() {
       'QUnit.test(\'templates/application.hbs\', function(assert) {',
       '  assert.expect(1);',
       (
-      '  assert.ok(false, \'templates/application.hbs should pass TemplateLint.\\n\\n' +
-      'block-indentation: Incorrect indentation for `div` beginning at L2:C0. Expected `</div>` ending at L5:C9 to be at an indentation of 0 but was found at 3. (templates/application @ L5:C9): \\n' +
-      '`<div>\\n  <p>\\n </p>\\n   </div>`\\n' +
-      'block-indentation: Incorrect indentation for `p` beginning at L3:C2. Expected `</p>` ending at L4:C5 to be at an indentation of 2 but was found at 1. (templates/application @ L4:C5): \\n' +
-      '`<p>\\n </p>`\\n' +
-      'html-comments: HTML comment detected (templates/application): \\n' +
-      '`<!-- silly html comments -->`\');'
+        '  assert.ok(false, \'templates/application.hbs should pass TemplateLint.\\n\\n' +
+        'block-indentation: Incorrect indentation for `div` beginning at L2:C0. Expected `</div>` ending at L5:C9 to be at an indentation of 0 but was found at 3. (templates/application @ L5:C9): \\n' +
+        '`<div>\\n  <p>\\n </p>\\n   </div>`\\n' +
+        'block-indentation: Incorrect indentation for `p` beginning at L3:C2. Expected `</p>` ending at L4:C5 to be at an indentation of 2 but was found at 1. (templates/application @ L4:C5): \\n' +
+        '`<p>\\n </p>`\\n' +
+        'html-comments: HTML comment detected (templates/application): \\n' +
+        '`<!-- silly html comments -->`\');'
       ),
       '});'
     ].join('\n'));
@@ -161,13 +161,13 @@ describe('broccoli-template-linter', function() {
       '  it(\'templates/application.hbs\', function() {',
       '    // test failed',
       (
-      '    var error = new chai.AssertionError(\'templates/application.hbs should pass TemplateLint.\\n\\n' +
-      'block-indentation: Incorrect indentation for `div` beginning at L2:C0. Expected `</div>` ending at L5:C9 to be at an indentation of 0 but was found at 3. (templates/application @ L5:C9): \\n' +
-      '`<div>\\n  <p>\\n </p>\\n   </div>`\\n' +
-      'block-indentation: Incorrect indentation for `p` beginning at L3:C2. Expected `</p>` ending at L4:C5 to be at an indentation of 2 but was found at 1. (templates/application @ L4:C5): \\n' +
-      '`<p>\\n </p>`\\n' +
-      'html-comments: HTML comment detected (templates/application): \\n' +
-      '`<!-- silly html comments -->`\');'
+        '    var error = new chai.AssertionError(\'templates/application.hbs should pass TemplateLint.\\n\\n' +
+        'block-indentation: Incorrect indentation for `div` beginning at L2:C0. Expected `</div>` ending at L5:C9 to be at an indentation of 0 but was found at 3. (templates/application @ L5:C9): \\n' +
+        '`<div>\\n  <p>\\n </p>\\n   </div>`\\n' +
+        'block-indentation: Incorrect indentation for `p` beginning at L3:C2. Expected `</p>` ending at L4:C5 to be at an indentation of 2 but was found at 1. (templates/application @ L4:C5): \\n' +
+        '`<p>\\n </p>`\\n' +
+        'html-comments: HTML comment detected (templates/application): \\n' +
+        '`<!-- silly html comments -->`\');'
       ),
       '    error.stack = undefined;',
       '    throw error;',

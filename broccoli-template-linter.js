@@ -106,10 +106,11 @@ TemplateLinter.prototype.processString = function(contents, relativePath) {
     return error.severity > 1;
   });
   let passed = errors.length === 0;
-  let errorDisplay = errors.map(function(error) {
-    return this.convertErrorToDisplayMessage(error);
-  }, this)
-        .join('\n');
+  let errorDisplay = errors
+    .map(function(error) {
+      return this.convertErrorToDisplayMessage(error);
+    }, this)
+    .join('\n');
 
   let output = '';
   if (this._testGenerator) {
