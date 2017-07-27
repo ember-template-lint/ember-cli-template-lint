@@ -7,6 +7,12 @@ Changelog
 - Update ember-template-lint to 0.8.0 which provides a much nicer ESLint-like console output.
 - Add `.handlebars` extension to the list of files to process.
 
+## v0.7.0
+
+- Update to ember-template-lint @ 0.7.0. Read more about the changes between 0.6.x and 0.7.0 [here](https://github.com/rwjblue/ember-template-lint/releases/tag/v0.7.0).
+- Update to new unified testing system.  This will result in a single test module for template linting related tests, which should make filtering your tests much easier.
+- Drop support for Node < 4.
+
 ## v0.5.2
 
 - Update test file generation to use proper file extension. This allows usage of the `Disable Linting` checkbox
