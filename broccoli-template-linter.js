@@ -81,22 +81,6 @@ TemplateLinter.prototype.build = function () {
     });
 };
 
-TemplateLinter.prototype.convertErrorToDisplayMessage = function(error) {
-  let message = error.rule + ': ' + error.message + ' (' + error.moduleId;
-
-  if (error.line && error.column) {
-    message = message + ' @ L' + error.line + ':C' + error.column;
-  }
-
-  message = message + ')';
-
-  if (error.source) {
-    message = message + ': \n`' + error.source + '`';
-  }
-
-  return message;
-};
-
 TemplateLinter.prototype.processString = function(contents, relativePath) {
   let errors = this.linter.verify({
     source: contents,
@@ -105,12 +89,9 @@ TemplateLinter.prototype.processString = function(contents, relativePath) {
   errors = errors.filter(function(error) {
     return error.severity > 1;
   });
+
   let passed = errors.length === 0;
-  let errorDisplay = errors
-    .map(function(error) {
-      return this.convertErrorToDisplayMessage(error);
-    }, this)
-    .join('\n');
+  let errorDisplay = Linter.errorsToMessages(relativePath, errors);
 
   let output = '';
   if (this._testGenerator) {
@@ -136,11 +117,11 @@ TemplateLinter.prototype.processString = function(contents, relativePath) {
   };
 };
 
-TemplateLinter.prototype.postProcess = function(results) {
+TemplateLinter.prototype.postProcess = function(results, relativePath) {
   let errors = results.errors;
 
   for (let i = 0; i < errors.length; i++) {
-    let errorDisplay = this.convertErrorToDisplayMessage(errors[i]);
+    let errorDisplay = Linter.errorsToMessages(relativePath, errors);
     this._errors.push(chalk.red(errorDisplay));
   }
 
