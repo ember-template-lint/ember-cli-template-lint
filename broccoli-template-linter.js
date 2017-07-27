@@ -12,6 +12,7 @@ const projectLocalizationAddon = require('./lib/utils/project-localization-frame
 const testGenerators = require('aot-test-generators');
 const testGeneratorNames = Object.keys(testGenerators);
 const concat = require('broccoli-concat');
+const stripAnsi = require('strip-ansi');
 
 function TemplateLinter(inputNode, _options) {
   if (!(this instanceof TemplateLinter)) { return new TemplateLinter(inputNode, _options); }
@@ -81,22 +82,6 @@ TemplateLinter.prototype.build = function () {
     });
 };
 
-TemplateLinter.prototype.convertErrorToDisplayMessage = function(error) {
-  let message = error.rule + ': ' + error.message + ' (' + error.moduleId;
-
-  if (error.line && error.column) {
-    message = message + ' @ L' + error.line + ':C' + error.column;
-  }
-
-  message = message + ')';
-
-  if (error.source) {
-    message = message + ': \n`' + error.source + '`';
-  }
-
-  return message;
-};
-
 TemplateLinter.prototype.processString = function(contents, relativePath) {
   let errors = this.linter.verify({
     source: contents,
@@ -105,43 +90,38 @@ TemplateLinter.prototype.processString = function(contents, relativePath) {
   errors = errors.filter(function(error) {
     return error.severity > 1;
   });
+
   let passed = errors.length === 0;
-  let errorDisplay = errors.map(function(error) {
-    return this.convertErrorToDisplayMessage(error);
-  }, this)
-        .join('\n');
+  let consoleOutput = Linter.errorsToMessages(relativePath, errors);
+  let testOutput = stripAnsi(consoleOutput);
 
   let output = '';
   if (this._testGenerator) {
     if (this.options.groupName) {
       output = this._testGenerator.test(relativePath, passed,
-        `${relativePath} should pass TemplateLint.\n\n${errorDisplay}`);
+        `${relativePath} should pass TemplateLint.\n\n${testOutput}`);
 
     } else {
       output = [
         this._testGenerator.suiteHeader(`TemplateLint | ${relativePath}`),
         this._testGenerator.test('should pass TemplateLint', passed,
-          `${relativePath} should pass TemplateLint.\n\n${errorDisplay}`),
+          `${relativePath} should pass TemplateLint.\n\n${testOutput}`),
         this._testGenerator.suiteFooter()
       ].join('');
     }
   }
 
-  debug('Found %s errors for %s with \ncontents: \n%s\nerrors: \n%s', errors.length, relativePath, contents, errorDisplay);
+  debug('Found %s errors for %s with \ncontents: \n%s\nerrors: \n%s', errors.length, relativePath, contents, consoleOutput);
 
   return {
-    errors: errors,
-    output: output
+    errors,
+    consoleOutput,
+    output
   };
 };
 
 TemplateLinter.prototype.postProcess = function(results) {
-  let errors = results.errors;
-
-  for (let i = 0; i < errors.length; i++) {
-    let errorDisplay = this.convertErrorToDisplayMessage(errors[i]);
-    this._errors.push(chalk.red(errorDisplay));
-  }
+  this._errors.push(results.consoleOutput);
 
   return results;
 };
