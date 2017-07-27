@@ -56,7 +56,7 @@
     "ember-resolver": "^4.1.0",
     "loader.js": "^4.5.0",
     "mocha": "^3.4.2",
-    "mocha-eslint": "^3.0.1",
+    "mocha-eslint": "^4.1.0",
     "mocha-only-detector": "^0.1.0"
   },
   "engines": {
