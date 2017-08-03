@@ -121,7 +121,9 @@ TemplateLinter.prototype.processString = function(contents, relativePath) {
 };
 
 TemplateLinter.prototype.postProcess = function(results) {
-  this._errors.push(results.consoleOutput);
+  if (results.consoleOutput) {
+    this._errors.push(results.consoleOutput);
+  }
 
   return results;
 };
