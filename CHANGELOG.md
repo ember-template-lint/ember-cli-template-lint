@@ -1,6 +1,10 @@
 Changelog
 =========
 
+## v0.7.3
+
+- Fix another issue with new console output formatting.
+
 ## v0.7.2
 
 - Update ember-template-lint to 0.8.1 to include a fix for console output formatting.
