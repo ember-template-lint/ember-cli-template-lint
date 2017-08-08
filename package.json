@@ -31,7 +31,7 @@
     "broccoli-concat": "^3.2.2",
     "broccoli-persistent-filter": "^1.2.0",
     "chalk": "^2.0.1",
-    "debug": "^2.6.8",
+    "debug": "^3.0.0",
     "ember-cli-version-checker": "^2.0.0",
     "ember-template-lint": "^0.8.1",
     "json-stable-stringify": "^1.0.1",
