@@ -70,7 +70,7 @@ For more information on using ember-cli, visit [http://www.ember-cli.com/](http:
 ## Troubleshooting
 
 If your files aren't linted make sure that you don't have the following option set in your `ember-cli-build.js`:
-```
+```js
 var app = new EmberApp(defaults, {
   hinting: false
 });
