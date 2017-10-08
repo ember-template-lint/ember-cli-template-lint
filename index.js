@@ -17,9 +17,9 @@ module.exports = {
       let VersionChecker = require('ember-cli-version-checker');
       let checker = new VersionChecker(this.project);
 
-      if (checker.for('ember-cli-qunit', 'npm').satisfies('*')) {
+      if (checker.for('ember-cli-qunit', 'npm').exists()) {
         this._options.testGenerator = 'qunit';
-      } else if (checker.for('ember-cli-mocha', 'npm').satisfies('*')) {
+      } else if (checker.for('ember-cli-mocha', 'npm').exists()) {
         this._options.testGenerator = 'mocha';
       } else {
         this.ui.writeWarnLine(
