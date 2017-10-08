@@ -1,6 +1,11 @@
 Changelog
 =========
 
+## v0.7.4
+
+- Fix issue with warning when no testing framework is detected.
+- Update various dependencies.
+
 ## v0.7.3
 
 - Fix another issue with new console output formatting.
