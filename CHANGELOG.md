@@ -1,6 +1,10 @@
 Changelog
 =========
 
+## v0.7.5
+
+- Fix test framework detection to allow prerelease versions.
+
 ## v0.7.4
 
 - Fix issue with warning when no testing framework is detected.
