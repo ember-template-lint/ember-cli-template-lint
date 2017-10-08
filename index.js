@@ -22,7 +22,7 @@ module.exports = {
       } else if (checker.for('ember-cli-mocha', 'npm').satisfies('*')) {
         this._options.testGenerator = 'mocha';
       } else {
-        this.ui.warn(
+        this.ui.writeWarnLine(
           '[ember-cli-template-lint] Test framework detection was unsuccessful. ' +
           'Please provide a "testGenerator" option explicitly to enable the test generators.'
         );
