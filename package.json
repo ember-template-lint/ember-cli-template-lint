@@ -1,6 +1,6 @@
 {
   "name": "ember-cli-template-lint",
-  "version": "0.7.3",
+  "version": "0.7.4",
   "description": "Lint your handlebars templates.",
   "keywords": [
     "ember-addon"
