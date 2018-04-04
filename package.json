@@ -5,9 +5,9 @@
   "keywords": [
     "ember-addon"
   ],
-  "homepage": "https://github.com/rwjblue/ember-cli-template-lint",
+  "homepage": "https://github.com/ember-template-lint/ember-cli-template-lint",
   "bugs": {
-    "url": "https://github.com/rwjblue/ember-cli-template-lint/issues"
+    "url": "https://github.com/ember-template-lint/ember-cli-template-lint/issues"
   },
   "license": "MIT",
   "author": "Robert Jackson <me@rwjblue.com>",
@@ -18,7 +18,7 @@
   },
   "repository": {
     "type": "git",
-    "url": "git+ssh://git@github.com/rwjblue/ember-cli-template-lint.git"
+    "url": "git+ssh://git@github.com/ember-template-lint/ember-cli-template-lint.git"
   },
   "scripts": {
     "build": "ember build",
