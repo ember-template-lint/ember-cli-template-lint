@@ -6,6 +6,10 @@ node_js:
   - "7"
 
 sudo: false
+dist: trusty
+
+addons:
+  chrome: stable
 
 cache:
   yarn: true

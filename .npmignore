@@ -13,5 +13,5 @@
 .travis.yml
 bower.json
 ember-cli-build.js
-testem.json
+testem.js
 node-tests/
