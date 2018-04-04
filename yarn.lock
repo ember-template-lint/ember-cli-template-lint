@@ -2325,10 +2325,6 @@ espree@^3.4.3:
     acorn "^5.0.1"
     acorn-jsx "^3.0.0"
 
-esprima@^2.7.0:
-  version "2.7.3"
-  resolved "https://registry.yarnpkg.com/esprima/-/esprima-2.7.3.tgz#96e3b70d5779f6ad49cd032673d1c312767ba581"
-
 esprima@^4.0.0:
   version "4.0.0"
   resolved "https://registry.yarnpkg.com/esprima/-/esprima-4.0.0.tgz#4499eddcd1110e0b218bacf2fa7f7f59f55ca804"
@@ -3796,11 +3792,11 @@ mocha-eslint@^4.1.0:
     glob-all "^3.0.1"
     replaceall "^0.1.6"
 
-mocha-only-detector@^0.1.0:
-  version "0.1.0"
-  resolved "https://registry.yarnpkg.com/mocha-only-detector/-/mocha-only-detector-0.1.0.tgz#c326faca698ed8d5bc682e2ca3e873e5b5601154"
+mocha-only-detector@^1.0.0:
+  version "1.0.0"
+  resolved "https://registry.yarnpkg.com/mocha-only-detector/-/mocha-only-detector-1.0.0.tgz#183c710afffcca79df172daf76c45afca3b8e37d"
   dependencies:
-    esprima "^2.7.0"
+    esprima "^4.0.0"
     esprimaq "^0.0.1"
     glob "^4.3.2"
 
