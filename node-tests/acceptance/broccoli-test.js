@@ -148,7 +148,7 @@ describe('broccoli-template-linter', function() {
     expect(combinedLog).to.contain('HTML comment detected');
   }));
 
-  it('prints warnings when bare-strings is not used with a localization addon present', co.wrap(function *() {
+  it('prints warnings when no-bare-strings is not used with a localization addon present', co.wrap(function *() {
     input.copy(`${fixturePath}/no-bare-strings`);
 
     let localizationAddon = {
@@ -173,10 +173,10 @@ describe('broccoli-template-linter', function() {
     let combinedLog = mockConsole._logLines.join('\n');
 
     expect(combinedLog).to.contain('ember-intl');
-    expect(combinedLog).to.contain('The `bare-strings` rule must be configured when using a localization framework');
+    expect(combinedLog).to.contain('The `no-bare-strings` rule must be configured when using a localization framework');
   }));
 
-  it('does not print warning when bare-strings is not used when a localization addon is not present', co.wrap(function *() {
+  it('does not print warning when no-bare-strings is not used when a localization addon is not present', co.wrap(function *() {
     input.copy(`${fixturePath}/no-bare-strings`);
 
     subject = TemplateLinter.create(`${input.path()}/app`, {
@@ -195,10 +195,10 @@ describe('broccoli-template-linter', function() {
     let combinedLog = mockConsole._logLines.join('\n');
 
     expect(combinedLog)
-      .to.not.contain('The `bare-strings` rule must be configured when using a localization framework');
+      .to.not.contain('The `no-bare-strings` rule must be configured when using a localization framework');
   }));
 
-  it('does not print warning when bare-strings is specified in config', co.wrap(function *() {
+  it('does not print warning when no-bare-strings is specified in config', co.wrap(function *() {
     input.copy(`${fixturePath}/with-bare-strings`);
 
     // broccoliTestHelpers.makeTestHelper does a chdir, but after instantiation
@@ -226,7 +226,7 @@ describe('broccoli-template-linter', function() {
     let combinedLog = mockConsole._logLines.join('\n');
 
     expect(combinedLog)
-      .to.not.contain('The `bare-strings` rule must be configured when using a localization framework');
+      .to.not.contain('The `no-bare-strings` rule must be configured when using a localization framework');
   }));
 
   it('generates tests for .handlebars files', co.wrap(function *() {

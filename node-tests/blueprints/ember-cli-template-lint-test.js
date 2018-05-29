@@ -39,6 +39,6 @@ describe('Acceptance: ember generate and destroy ember-cli-template-lint', funct
     yield emberGenerate(args);
 
     expect(file('.template-lintrc.js')).to.contain('extends: \'recommended\'');
-    expect(file('.template-lintrc.js')).to.contain('\'bare-strings\': true');
+    expect(file('.template-lintrc.js')).to.contain('\'no-bare-strings\': true');
   }));
 });

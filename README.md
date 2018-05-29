@@ -6,7 +6,7 @@
 ember-cli-template-lint will lint your templates and add a test for each asserting
 that all style rules have been satisfied.
 
-For example, given the rule `bare-strings` is enabled, this template would be
+For example, given the rule `no-bare-strings` is enabled, this template would be
 in violation:
 
 ```hbs
