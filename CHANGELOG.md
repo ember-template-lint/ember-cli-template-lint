@@ -1,6 +1,11 @@
 Changelog
 =========
 
+## v0.7.6
+
+- Update to latest version of `ember-template-lint` (see its [changelog](https://github.com/ember-template-lint/ember-template-lint/blob/master/CHANGELOG.md) for details).
+- Fix blueprint to account for the `bare-string` -> `no-bare-string` deprecation.
+
 ## v0.7.5
 
 - Fix test framework detection to allow prerelease versions.
