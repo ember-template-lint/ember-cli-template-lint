@@ -1,6 +1,6 @@
 module.exports = {
   extends: 'recommended',
   rules: {
-    'bare-strings': true
+    'no-bare-strings': true
   }
 };
