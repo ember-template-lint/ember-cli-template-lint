@@ -129,7 +129,7 @@ TemplateLinter.prototype.postProcess = function(results) {
 };
 
 TemplateLinter.prototype.issueLocalizationWarningIfNeeded = function() {
-  if ('bare-strings' in this.linter.config.rules) {
+  if ('no-bare-strings' in this.linter.config.rules) {
     return;
   }
 
@@ -142,7 +142,7 @@ TemplateLinter.prototype.issueLocalizationWarningIfNeeded = function() {
 
   if (addon) {
     this._console.log(chalk.yellow(
-      'The `bare-strings` rule must be configured when using a localization framework (`' + addon.name + '`). To prevent this warning, add the following to your `.template-lintrc.js`:\n\n  rules: {\n    \'bare-strings\': true\n  }'
+      'The `no-bare-strings` rule must be configured when using a localization framework (`' + addon.name + '`). To prevent this warning, add the following to your `.template-lintrc.js`:\n\n  rules: {\n    \'no-bare-strings\': true\n  }'
     ));
   }
 };
