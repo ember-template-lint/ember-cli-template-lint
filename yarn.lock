@@ -1350,8 +1350,8 @@ broccoli-stew@^1.2.0, broccoli-stew@^1.3.3:
     walk-sync "^0.3.0"
 
 broccoli-test-helper@^1.1.0:
-  version "1.2.0"
-  resolved "https://registry.yarnpkg.com/broccoli-test-helper/-/broccoli-test-helper-1.2.0.tgz#d01005d8611fd73ebe1b29552bf052ff59badfb4"
+  version "1.3.0"
+  resolved "https://registry.yarnpkg.com/broccoli-test-helper/-/broccoli-test-helper-1.3.0.tgz#ba673418b3963b2cc466be66092a5928700c827f"
   dependencies:
     broccoli "^1.1.0"
     fixturify "^0.3.2"
