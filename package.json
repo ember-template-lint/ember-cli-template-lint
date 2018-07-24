@@ -22,11 +22,11 @@
   "main": "index.js",
   "scripts": {
     "build": "ember build",
-    "nodetest": "mocha node-tests --recursive --timeout 5000",
     "lint:js": "eslint .",
     "start": "ember serve",
     "test": "ember test",
-    "test:all": "ember try:each"
+    "test:all": "ember try:each",
+    "test:node": "mocha node-tests --recursive --timeout 5000"
   },
   "dependencies": {
     "aot-test-generators": "^0.1.0",

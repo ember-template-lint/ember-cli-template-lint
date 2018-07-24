@@ -1,9 +1,7 @@
 ---
 language: node_js
 node_js:
-  # we recommend testing addons with the same minimum supported node version as Ember CLI
-  # so that your addon works for all apps
-  - "6"
+  - "10"
 
 sudo: false
 dist: trusty
@@ -14,31 +12,50 @@ addons:
 cache:
   yarn: true
 
-env:
-  global:
-    # See https://git.io/vdao3 for details.
-    - JOBS=1
-  matrix:
-    # we recommend new addons test the current and previous LTS
-    # as well as latest stable release (bonus points to beta/canary)
-    - EMBER_TRY_SCENARIO=ember-lts-2.12
-    - EMBER_TRY_SCENARIO=ember-lts-2.16
-    - EMBER_TRY_SCENARIO=ember-lts-2.18
-    - EMBER_TRY_SCENARIO=ember-release
-    - EMBER_TRY_SCENARIO=ember-beta
-    - EMBER_TRY_SCENARIO=ember-canary
-    - EMBER_TRY_SCENARIO=ember-default
+branches:
+  only:
+    - master
+    # automated dependency updates
+    - /^dependabot/
+    # npm version tags
+    - /^v\d+\.\d+\.\d+/
 
 before_install:
   - curl -o- -L https://yarnpkg.com/install.sh | bash
   - export PATH=$HOME/.yarn/bin:$PATH
 
 install:
-  - yarn install --no-lockfile
+  - yarn install
 
-script:
-  - yarn lint:js
-  - yarn nodetest
-  # Usually, it's ok to finish the test scenario without reverting
-  #  to the addon's original dependency state, skipping "cleanup".
-  - yarn ember try:one $EMBER_TRY_SCENARIO --skip-cleanup
+jobs:
+  fail_fast: true
+
+  include:
+    # runs tests in chrome with current locked deps and linting
+
+    - stage: tests
+      name: "Tests"
+      script:
+        - yarn lint:js
+        - yarn test:node
+        - yarn test
+
+    # If that passes:
+    # - run tests in other node versions
+    # - run tests without pinned dependencies to catch issues with new versions
+
+    - stage: additional tests
+      name: "Node 6 Tests"
+      node_js: 6
+      script:
+        - yarn test:node
+    - name: "Node 8 Tests"
+      node_js: 8
+      script:
+        - yarn test:node
+
+    - name: "Floating dependencies"
+      install: yarn install --no-lockfile --non-interactive
+      script:
+        - yarn test:node
+        - yarn test
