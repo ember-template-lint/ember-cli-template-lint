@@ -1,6 +1,13 @@
 Changelog
 =========
 
+## v1.0.0-beta.1
+
+- Drop support for Node 4, 5, 7, and 9.
+- Update ember-template-lint to 1.0.0-beta.2. Please review [ember-template-lint's CHANGELOG.md](https://github.com/ember-template-lint/ember-template-lint/blob/master/CHANGELOG.md) for a detailed list of changs.
+- Update dependencies to latest versions.
+- Ensure compatible with Broccoli 2.
+
 ## v0.7.6
 
 - Update to latest version of `ember-template-lint` (see its [changelog](https://github.com/ember-template-lint/ember-template-lint/blob/master/CHANGELOG.md) for details).
