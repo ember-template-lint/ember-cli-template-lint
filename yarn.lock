@@ -2299,9 +2299,9 @@ ember-source@~3.3.0:
     jquery "^3.3.1"
     resolve "^1.6.0"
 
-ember-template-lint@^1.0.0-beta.1:
-  version "1.0.0-beta.1"
-  resolved "https://registry.yarnpkg.com/ember-template-lint/-/ember-template-lint-1.0.0-beta.1.tgz#f9a0cf3701ff3cb507ac5b0c0fc9efd7616031bb"
+ember-template-lint@^1.0.0-beta.2:
+  version "1.0.0-beta.2"
+  resolved "https://registry.yarnpkg.com/ember-template-lint/-/ember-template-lint-1.0.0-beta.2.tgz#ee06ec5c463471cb34d3ef59f6432396e77deb70"
   dependencies:
     "@glimmer/compiler" "^0.35.5"
     chalk "^2.0.0"
