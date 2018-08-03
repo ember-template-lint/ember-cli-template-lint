@@ -3,17 +3,22 @@
 const co = require('co');
 const expect = require('chai').expect;
 const broccoliTestHelper = require('broccoli-test-helper');
-const createBuilder = broccoliTestHelper.createBuilder;
-const createTempDir = broccoliTestHelper.createTempDir;
+const { fromBuilder, createTempDir } = broccoliTestHelper;
 
 const TemplateLinter = require('../../broccoli-template-linter');
 const fixturePath = `${__dirname}/../fixtures`;
 
 describe('broccoli-template-linter', function() {
+  this.timeout(10000);
+
   let input, output, subject, mockConsole;
 
+  function createBuilder(node) {
+    const Builder = require("broccoli").Builder;
+    return fromBuilder(new Builder(node));
+  }
+
   beforeEach(co.wrap(function *() {
-    this.timeout(10000);
 
     input = yield createTempDir();
     mockConsole = buildFakeConsole();
