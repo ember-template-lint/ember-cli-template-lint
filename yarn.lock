@@ -2300,8 +2300,8 @@ ember-source@~3.3.0:
     resolve "^1.6.0"
 
 ember-template-lint@^1.0.0-beta.2:
-  version "1.0.0-beta.2"
-  resolved "https://registry.yarnpkg.com/ember-template-lint/-/ember-template-lint-1.0.0-beta.2.tgz#ee06ec5c463471cb34d3ef59f6432396e77deb70"
+  version "1.0.0-beta.3"
+  resolved "https://registry.yarnpkg.com/ember-template-lint/-/ember-template-lint-1.0.0-beta.3.tgz#fc5949900d7090494d74fd69287b61a456c2bb23"
   dependencies:
     "@glimmer/compiler" "^0.35.5"
     chalk "^2.0.0"
