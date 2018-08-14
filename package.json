@@ -42,7 +42,7 @@
     "walk-sync": "^0.3.2"
   },
   "devDependencies": {
-    "broccoli-asset-rev": "^2.7.0",
+    "broccoli-asset-rev": "^3.0.0",
     "broccoli-test-helper": "^1.3.0",
     "chai": "^4.0.0",
     "co": "^4.6.0",
