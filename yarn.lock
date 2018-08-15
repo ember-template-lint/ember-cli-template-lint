@@ -1013,14 +1013,14 @@ broccoli-clean-css@^1.1.0:
     json-stable-stringify "^1.0.0"
 
 broccoli-concat@^3.2.2, broccoli-concat@^3.4.0:
-  version "3.4.0"
-  resolved "https://registry.yarnpkg.com/broccoli-concat/-/broccoli-concat-3.4.0.tgz#1b7cd73995cbff170d958b3c81496e59313ed14f"
+  version "3.6.0"
+  resolved "https://registry.yarnpkg.com/broccoli-concat/-/broccoli-concat-3.6.0.tgz#f64763319ec71d240ab0ed4e8864e15f56c867ec"
   dependencies:
     broccoli-kitchen-sink-helpers "^0.3.1"
     broccoli-plugin "^1.3.0"
     broccoli-stew "^1.5.0"
     ensure-posix-path "^1.0.2"
-    fast-sourcemap-concat "^1.3.1"
+    fast-sourcemap-concat "^1.4.0"
     find-index "^1.1.0"
     fs-extra "^4.0.3"
     fs-tree-diff "^0.5.7"
@@ -2799,9 +2799,9 @@ fast-ordered-set@^1.0.0, fast-ordered-set@^1.0.2:
   dependencies:
     blank-object "^1.0.1"
 
-fast-sourcemap-concat@^1.3.1:
-  version "1.3.2"
-  resolved "https://registry.yarnpkg.com/fast-sourcemap-concat/-/fast-sourcemap-concat-1.3.2.tgz#148a3e15260177f9e4d3ad90a8bcad0c47b8d073"
+fast-sourcemap-concat@^1.4.0:
+  version "1.4.0"
+  resolved "https://registry.yarnpkg.com/fast-sourcemap-concat/-/fast-sourcemap-concat-1.4.0.tgz#122c330d4a2afaff16ad143bc9674b87cd76c8ad"
   dependencies:
     chalk "^2.0.0"
     fs-extra "^5.0.0"
