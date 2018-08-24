@@ -1013,12 +1013,12 @@ broccoli-clean-css@^1.1.0:
     json-stable-stringify "^1.0.0"
 
 broccoli-concat@^3.2.2, broccoli-concat@^3.4.0:
-  version "3.6.0"
-  resolved "https://registry.yarnpkg.com/broccoli-concat/-/broccoli-concat-3.6.0.tgz#f64763319ec71d240ab0ed4e8864e15f56c867ec"
+  version "3.7.0"
+  resolved "https://registry.yarnpkg.com/broccoli-concat/-/broccoli-concat-3.7.0.tgz#6407fd411bc0bdf70a1aa607e382a7fa214e55bb"
   dependencies:
+    broccoli-debug "^0.6.4"
     broccoli-kitchen-sink-helpers "^0.3.1"
     broccoli-plugin "^1.3.0"
-    broccoli-stew "^1.5.0"
     ensure-posix-path "^1.0.2"
     fast-sourcemap-concat "^1.4.0"
     find-index "^1.1.0"
@@ -1213,7 +1213,7 @@ broccoli-source@^1.1.0:
   version "1.1.0"
   resolved "https://registry.yarnpkg.com/broccoli-source/-/broccoli-source-1.1.0.tgz#54f0e82c8b73f46580cbbc4f578f0b32fca8f809"
 
-broccoli-stew@^1.2.0, broccoli-stew@^1.5.0:
+broccoli-stew@^1.2.0:
   version "1.6.0"
   resolved "https://registry.yarnpkg.com/broccoli-stew/-/broccoli-stew-1.6.0.tgz#01f6d92806ed6679ddbe48d405066a0e164dfbef"
   dependencies:
