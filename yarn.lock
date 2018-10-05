@@ -1816,9 +1816,9 @@ broccoli-clean-css@^1.1.0:
     json-stable-stringify "^1.0.0"
 
 broccoli-concat@^3.2.2, broccoli-concat@^3.7.1:
-  version "3.7.1"
-  resolved "https://registry.yarnpkg.com/broccoli-concat/-/broccoli-concat-3.7.1.tgz#22ba97420b33f5254549adc5bc41163f97bd1793"
-  integrity sha512-3qvGPoxQygYb76EYR2m7Ji7jhCTmJlcAlbyjwJkPJAZmMLcnkCmPzq7nFa1lXW/3HDhktQyuQqGqskXWCCG66g==
+  version "3.7.2"
+  resolved "https://registry.yarnpkg.com/broccoli-concat/-/broccoli-concat-3.7.2.tgz#904752d0ae1f4367f3df40fe066e5d658efe2dff"
+  integrity sha512-srzMv42CvHaC5tIe6qdy06Z1IrAv1cwXzAi0uVG0uSnpgfefV7lE40n9/VFuVZk4TU0YmFA2bOOVtPEK4BcECA==
   dependencies:
     broccoli-debug "^0.6.4"
     broccoli-kitchen-sink-helpers "^0.3.1"
