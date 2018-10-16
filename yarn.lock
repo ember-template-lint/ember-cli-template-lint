@@ -2022,9 +2022,9 @@ broccoli-persistent-filter@^1.1.6, broccoli-persistent-filter@^1.4.3:
     walk-sync "^0.3.1"
 
 broccoli-persistent-filter@^2.1.0:
-  version "2.1.0"
-  resolved "https://registry.yarnpkg.com/broccoli-persistent-filter/-/broccoli-persistent-filter-2.1.0.tgz#b53f96fa03ea16dec58481b01eb08a062a3e4dc5"
-  integrity sha512-1FCmfD+5AizezkIC/ASNd6Tquhlo3soaRjqA/+MrXl4u4VsUOQo48qNYiDsPQcDygXqQspDL4q9KlNApQuAXbg==
+  version "2.1.1"
+  resolved "https://registry.yarnpkg.com/broccoli-persistent-filter/-/broccoli-persistent-filter-2.1.1.tgz#7bb2b1015baedf5cf58b5b2608495f3d78f81b12"
+  integrity sha512-2VCbLJqMg/AWJ6WTmv83X13a6DD3BS7Gngc932jrg1snVqsB8LJDyJh+Hd9v1tQ/vMA+4vbWgwk4tDmI/tAZWg==
   dependencies:
     async-disk-cache "^1.2.1"
     async-promise-queue "^1.0.3"
