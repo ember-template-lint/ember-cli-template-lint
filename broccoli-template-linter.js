@@ -129,7 +129,7 @@ TemplateLinter.prototype.postProcess = function(results) {
 };
 
 TemplateLinter.prototype.issueLocalizationWarningIfNeeded = function() {
-  if ('no-bare-strings' in this.linter.config.rules) {
+  if ('no-bare-strings' in this.linter.config.loadedRules) {
     return;
   }
 
