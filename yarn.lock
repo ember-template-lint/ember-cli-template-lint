@@ -2761,17 +2761,17 @@ debug@3.1.0, debug@~3.1.0:
   dependencies:
     ms "2.0.0"
 
-debug@^3.0.0, debug@^3.1.0:
+debug@^3.1.0:
   version "3.2.1"
   resolved "https://registry.yarnpkg.com/debug/-/debug-3.2.1.tgz#30b2d86ecc0f169034c260a84b295fcb51eb88ec"
   integrity sha512-P5CJ6AGKlnMM3Rd1V4xmQ1SNn5VQ/4UoIiVmDzJxliKCeG1ANIj6ThcWWsefqZ4WdzGdmhG3WdeKrcjx9eNUYA==
   dependencies:
     ms "^2.1.1"
 
-debug@^4.0.1:
-  version "4.1.0"
-  resolved "https://registry.yarnpkg.com/debug/-/debug-4.1.0.tgz#373687bffa678b38b1cd91f861b63850035ddc87"
-  integrity sha512-heNPJUJIqC+xB6ayLAMHaIrmN9HKa7aQO8MGqKpvCA+uJYVcvR6l5kgdrhRuwPFHU7P5/A1w0BjByPHwpfTDKg==
+debug@^4.0.1, debug@^4.1.0:
+  version "4.1.1"
+  resolved "https://registry.yarnpkg.com/debug/-/debug-4.1.1.tgz#3b72260255109c6b589cee050f1d516139664791"
+  integrity sha512-pYAIzeRo8J6KPEaJ0VWOh5Pzkbw/RetuzehGM7QRRX5he4fPHx2rdKMB256ehJCkX+XRQm16eZLqLNS8RSZXZw==
   dependencies:
     ms "^2.1.1"
 
@@ -3016,16 +3016,16 @@ ember-cli-babel@^7.1.0:
     semver "^5.5.0"
 
 ember-cli-blueprint-test-helpers@^0.19.1:
-  version "0.19.1"
-  resolved "https://registry.yarnpkg.com/ember-cli-blueprint-test-helpers/-/ember-cli-blueprint-test-helpers-0.19.1.tgz#26df9724a6cb48f7acfa391dec7ec772888b0929"
-  integrity sha512-lyfCvR5gxbNn5mJKfVAUj3Q5K1VyJo3miAaQ9zk2dL7ijs281C3j73WYyCK7tWBoBJ04jOzkb+YXV6jFwVpvsA==
+  version "0.19.2"
+  resolved "https://registry.yarnpkg.com/ember-cli-blueprint-test-helpers/-/ember-cli-blueprint-test-helpers-0.19.2.tgz#9e563cd81ab39931253ced0982c5d02475895401"
+  integrity sha512-otCKdGcNFK0+MkQo+LLjYbRD9EerApH6Z/odvvlL1hxrN+owHMV5E+jI2rbtdvNEH0/6w5ZqjH4kS232fvtCxQ==
   dependencies:
     chai "^4.1.0"
     chai-as-promised "^7.0.0"
     chai-files "^1.0.0"
-    debug "^3.0.0"
+    debug "^4.1.0"
     ember-cli-internal-test-helpers "^0.9.1"
-    fs-extra "^5.0.0"
+    fs-extra "^7.0.0"
     testdouble "^3.2.6"
     tmp-sync "^1.0.0"
 
@@ -4227,6 +4227,15 @@ fs-extra@^5.0.0:
   version "5.0.0"
   resolved "https://registry.yarnpkg.com/fs-extra/-/fs-extra-5.0.0.tgz#414d0110cdd06705734d055652c5411260c31abd"
   integrity sha512-66Pm4RYbjzdyeuqudYqhFiNBbCIuI9kgRqLPSHIlXHidW8NIQtVdkM1yeZ4lXwuhbTETv3EUGMNHAAw6hiundQ==
+  dependencies:
+    graceful-fs "^4.1.2"
+    jsonfile "^4.0.0"
+    universalify "^0.1.0"
+
+fs-extra@^7.0.0:
+  version "7.0.1"
+  resolved "https://registry.yarnpkg.com/fs-extra/-/fs-extra-7.0.1.tgz#4f189c44aa123b895f722804f55ea23eadc348e9"
+  integrity sha512-YJDaCJZEnBmcbw13fvdAM9AwNOJwOzrE4pqMqBq5nFiEqXUqHwlK4B+3pUw6JNvfSPtX05xFHtYy/1ni01eGCw==
   dependencies:
     graceful-fs "^4.1.2"
     jsonfile "^4.0.0"
