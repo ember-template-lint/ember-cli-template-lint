@@ -1,6 +1,12 @@
 Changelog
 =========
 
+## v1.0.0-beta.3
+
+- Support parallel babel configuration.
+- Update ember-template-lint to 1.1.0.
+- Update dependencies to latest versions.
+
 ## v1.0.0-beta.1
 
 - Drop support for Node 4, 5, 7, and 9.
