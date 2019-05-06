@@ -37,7 +37,7 @@
     "ember-cli-version-checker": "^3.0.1",
     "ember-template-lint": "^1.1.0",
     "json-stable-stringify": "^1.0.1",
-    "md5-hex": "^2.0.0",
+    "md5-hex": "^3.0.0",
     "strip-ansi": "^4.0.0",
     "walk-sync": "^1.1.3"
   },
