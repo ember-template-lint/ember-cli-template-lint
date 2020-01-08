@@ -34,15 +34,6 @@ which allows configuration by using a `.template-lintrc.js` file in the root of 
 
 See [here](https://github.com/rwjblue/ember-template-lint/#rules) details on configuration and rules that are available.
 
-## Contributing
-
-A few ideas for where to take this in the future:
-
-* The list of rules should be configurable
-* This addon should use a test printer shared with jshint, eslint and jscs addons
-* A command-line version of the linter should be provided so IDEs and editors
-  can provide feedback to devs during development
-
 ### Installation
 
 * `git clone` this repository
