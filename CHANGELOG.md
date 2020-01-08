@@ -1,6 +1,11 @@
 Changelog
 =========
 
+## v1.0.0-beta.4
+
+- Update dependency to support Dynamic styles. Please review [ember-template-lint's CHANGELOG.md](https://github.com/ember-template-lint/ember-template-lint/blob/master/CHANGELOG.md) for a detailed list of changs.
+- Remove jshintrc file.
+
 ## v1.0.0-beta.3
 
 - Support parallel babel configuration.
