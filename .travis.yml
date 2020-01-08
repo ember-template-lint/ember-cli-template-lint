@@ -1,7 +1,7 @@
 ---
 language: node_js
 node_js:
-  - "10"
+  - "12"
 
 addons:
   chrome: stable
@@ -42,12 +42,12 @@ jobs:
     # - run tests without pinned dependencies to catch issues with new versions
 
     - stage: additional tests
-      name: "Node 6 Tests"
-      node_js: 6
+      name: "Node 10 Tests"
+      node_js: 10
       script:
         - yarn test:node
-    - name: "Node 8 Tests"
-      node_js: 8
+    - name: "Node 13 Tests"
+      node_js: 13
       script:
         - yarn test:node
 
