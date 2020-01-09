@@ -29,10 +29,10 @@ __Ember CLI >= 2.4.2 is required for linting templates__
 
 ## Configuration
 
-ember-cli-template-lint is powered by [ember-template-lint](https://github.com/rwjblue/ember-template-lint)
+ember-cli-template-lint is powered by [ember-template-lint](https://github.com/ember-template-lint/ember-template-lint)
 which allows configuration by using a `.template-lintrc.js` file in the root of your project.
 
-See [here](https://github.com/rwjblue/ember-template-lint/#rules) details on configuration and rules that are available.
+See [here](https://github.com/ember-template-lint/ember-template-lint/#rules) details on configuration and rules that are available.
 
 ### Installation
 
