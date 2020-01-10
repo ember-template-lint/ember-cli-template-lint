@@ -62,7 +62,7 @@
     "ember-source-channel-url": "^1.1.0",
     "ember-try": "^1.0.0",
     "eslint-plugin-ember": "^6.5.1",
-    "eslint-plugin-node": "^8.0.1",
+    "eslint-plugin-node": "^11.0.0",
     "loader.js": "^4.7.0",
     "mocha": "^6.0.0",
     "mocha-eslint": "^5.0.0",
