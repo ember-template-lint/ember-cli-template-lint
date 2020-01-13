@@ -1,9 +1,7 @@
 'use strict';
 
-/* eslint-env node */
-
 module.exports = {
-  extends: 'recommended',
+  extends: 'octane',
 
   pending: [
     'dummy/templates/components/foo-bar'
