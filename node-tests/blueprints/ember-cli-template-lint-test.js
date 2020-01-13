@@ -10,6 +10,9 @@ const chai = require('ember-cli-blueprint-test-helpers/chai');
 const expect = chai.expect;
 const file = chai.file;
 
+const td = require('testdouble');
+const MockUI = require('console-ui/mock');
+
 describe('Acceptance: ember generate and destroy ember-cli-template-lint', function() {
   setupTestHooks(this);
 
@@ -22,21 +25,32 @@ describe('Acceptance: ember generate and destroy ember-cli-template-lint', funct
     delete process.env.FORCE_LOCALIZED_FOR_TESTING;
   });
 
+  let prompt;
+  beforeEach(function() {
+    prompt = td.function();
+    td.replace(MockUI.prototype, 'prompt', prompt);
+  });
+
+  afterEach(function() {
+    td.reset();
+  });
+
   it('ember-cli-template-lint without localization framework', co.wrap(function *() {
-    let args = ['ember-cli-template-lint'];
+    td.when(prompt(td.matchers.anything())).thenResolve({ answer: 'overwrite', deleteFiles: 'all' });
 
     yield emberNew();
-    yield emberGenerate(args);
+    yield emberGenerate(['ember-cli-template-lint']);
 
     expect(file('.template-lintrc.js')).to.contain('extends: \'octane\'');
   }));
 
   it('ember-cli-template-lint with localization framework', co.wrap(function *() {
     process.env.FORCE_LOCALIZED_FOR_TESTING = true;
-    let args = ['ember-cli-template-lint'];
+
+    td.when(prompt(td.matchers.anything())).thenResolve({ answer: 'overwrite', deleteFiles: 'all' });
 
     yield emberNew();
-    yield emberGenerate(args);
+    yield emberGenerate(['ember-cli-template-lint']);
 
     expect(file('.template-lintrc.js')).to.contain('extends: \'octane\'');
     expect(file('.template-lintrc.js')).to.contain('\'no-bare-strings\': true');
