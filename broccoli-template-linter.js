@@ -18,7 +18,7 @@ function TemplateLinter(inputNode, _options) {
   if (!(this instanceof TemplateLinter)) { return new TemplateLinter(inputNode, _options); }
 
   let options = _options || {};
-  if (!options.hasOwnProperty('persist')) {
+  if (!Object.prototype.hasOwnProperty.call(options, 'persist')) {
     options.persist = true;
   }
 
