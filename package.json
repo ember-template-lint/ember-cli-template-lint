@@ -50,7 +50,7 @@
     "ember-cli-babel": "^7.1.0",
     "ember-cli-blueprint-test-helpers": "^0.19.1",
     "ember-cli-dependency-checker": "^3.0.0",
-    "ember-cli-htmlbars": "^3.0.0",
+    "ember-cli-htmlbars": "^4.2.1",
     "ember-cli-htmlbars-inline-precompile": "^2.1.0",
     "ember-cli-inject-live-reload": "^2.0.2",
     "ember-cli-qunit": "^4.3.2",
