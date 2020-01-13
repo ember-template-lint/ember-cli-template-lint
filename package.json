@@ -32,7 +32,7 @@
     "aot-test-generators": "^0.1.0",
     "broccoli-concat": "^3.7.1",
     "broccoli-persistent-filter": "^2.1.0",
-    "chalk": "^2.4.1",
+    "chalk": "^3.0.0",
     "debug": "^4.0.1",
     "ember-cli-version-checker": "^3.0.1",
     "ember-template-lint": "^1.2.0",
