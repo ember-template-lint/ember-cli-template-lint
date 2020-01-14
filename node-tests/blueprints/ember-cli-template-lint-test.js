@@ -28,7 +28,7 @@ describe('Acceptance: ember generate and destroy ember-cli-template-lint', funct
     yield emberNew();
     yield emberGenerate(args);
 
-    expect(file('.template-lintrc.js')).to.contain('extends: \'recommended\'');
+    expect(file('.template-lintrc.js')).to.contain('extends: \'octane\'');
   }));
 
   it('ember-cli-template-lint with localization framework', co.wrap(function *() {
@@ -38,7 +38,7 @@ describe('Acceptance: ember generate and destroy ember-cli-template-lint', funct
     yield emberNew();
     yield emberGenerate(args);
 
-    expect(file('.template-lintrc.js')).to.contain('extends: \'recommended\'');
+    expect(file('.template-lintrc.js')).to.contain('extends: \'octane\'');
     expect(file('.template-lintrc.js')).to.contain('\'no-bare-strings\': true');
   }));
 });
