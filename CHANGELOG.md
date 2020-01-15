@@ -1,6 +1,12 @@
 Changelog
 =========
 
+## v2.0.0
+
+- Update blueprint to use `octane` config
+- Run `npx ember-cli-update`
+- Drop NodeJs 6, 8, 11
+
 ## v1.0.0
 
 - Update dependency to support Dynamic styles. Please review [ember-template-lint's CHANGELOG.md](https://github.com/ember-template-lint/ember-template-lint/blob/master/CHANGELOG.md) for a detailed list of changs.
