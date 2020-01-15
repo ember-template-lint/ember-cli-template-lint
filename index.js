@@ -7,7 +7,7 @@ const TemplateLinter = require('./broccoli-template-linter');
 const PrintFailing = require('./lib/commands/print-failing');
 
 module.exports = {
-  name: 'ember-cli-template-lint',
+  name: require('./package').name,
 
   included: function (app) {
     this._super.included.apply(this, arguments);
