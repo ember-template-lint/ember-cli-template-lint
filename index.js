@@ -64,14 +64,26 @@ module.exports = {
   },
 
   setupPreprocessorRegistry(type, registry) {
+    const plugin = this._buildPlugin();
+
+    plugin.parallelBabel = {
+      requireFile: __filename,
+      buildUsing: '_buildPlugin',
+      params: {}
+    };
+
+    registry.add('htmlbars-ast-plugin', plugin);
+  },
+
+  _buildPlugin() {
     let RemoveConfigurationHtmlComments = require('./lib/plugins/remove-configuration-html-comments');
 
-    registry.add('htmlbars-ast-plugin', {
+    return {
       name: 'remove-configuration-html-comments',
       plugin: RemoveConfigurationHtmlComments(),
       baseDir() {
         return __dirname;
       }
-    });
+    };
   }
 };
