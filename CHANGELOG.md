@@ -1,6 +1,10 @@
 Changelog
 =========
 
+## v2.0.1
+
+- Allow Babel to run in parrallel
+
 ## v2.0.0
 
 - Update blueprint to use `octane` config
