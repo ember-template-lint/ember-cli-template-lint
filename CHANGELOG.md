@@ -1,6 +1,10 @@
 Changelog
 =========
 
+## v2.0.2
+
+- Update to ember-template-lint@2.0.1
+
 ## v2.0.1
 
 - Allow Babel to run in parrallel
