@@ -6,15 +6,15 @@
 
 ## 🔴 DEPRECATED 🔴
 
-** ember-cli-template-lint is deprecated!! **
+**ember-cli-template-lint is deprecated!!**
 
 Please use [ember-template-lint](https://github.com/ember-template-lint/ember-template-lint) directly instead.
 
 More info / background:
 
-https://github.com/ember-cli/rfcs/pull/121
-https://github.com/emberjs/rfcs/blob/master/text/0121-remove-ember-cli-eslint.md
-https://github.com/ember-cli/ember-cli/pull/9009
+* https://github.com/ember-cli/rfcs/pull/121
+* https://github.com/emberjs/rfcs/blob/master/text/0121-remove-ember-cli-eslint.md
+* https://github.com/ember-cli/ember-cli/pull/9009
 
 ## General Info
 
