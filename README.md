@@ -3,6 +3,21 @@
 [![npm version](https://badge.fury.io/js/ember-cli-template-lint.svg)](https://badge.fury.io/js/ember-cli-template-lint)
 [![Build Status](https://travis-ci.org/ember-template-lint/ember-cli-template-lint.svg?branch=master)](https://travis-ci.org/ember-template-lint/ember-cli-template-lint)
 
+
+## 🔴 DEPRECATED 🔴
+
+**ember-cli-template-lint is deprecated!!**
+
+Please use [ember-template-lint](https://github.com/ember-template-lint/ember-template-lint) directly instead.
+
+More info / background:
+
+* https://github.com/ember-cli/rfcs/pull/121
+* https://github.com/emberjs/rfcs/blob/master/text/0121-remove-ember-cli-eslint.md
+* https://github.com/ember-cli/ember-cli/pull/9009
+
+## General Info
+
 ember-cli-template-lint will lint your templates and add a test for each asserting
 that all style rules have been satisfied.
 
