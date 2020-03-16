@@ -73,7 +73,7 @@
     "mocha-eslint": "^6.0.0",
     "mocha-only-detector": "^1.0.0",
     "qunit-dom": "^1.1.0",
-    "testdouble": "^3.13.0"
+    "testdouble": "^3.13.1"
   },
   "engines": {
     "node": "10.* || >=12.*"
