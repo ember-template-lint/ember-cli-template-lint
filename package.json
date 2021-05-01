@@ -69,7 +69,7 @@
     "eslint-plugin-ember": "^8.14.0",
     "eslint-plugin-node": "^11.1.0",
     "loader.js": "^4.7.0",
-    "mocha": "^8.2.1",
+    "mocha": "^8.3.2",
     "mocha-eslint": "^6.0.0",
     "mocha-only-detector": "^1.0.0",
     "qunit-dom": "^1.6.0",
