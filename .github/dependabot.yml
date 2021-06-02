@@ -1,0 +1,23 @@
+version: 2
+updates:
+- package-ecosystem: npm
+  directory: "/"
+  schedule:
+    interval: monthly
+    time: "04:00"
+    timezone: EST
+  open-pull-requests-limit: 10
+  versioning-strategy: increase
+  ignore:
+  - dependency-name: ember-source
+    versions:
+    - 3.24.0
+    - 3.24.1
+  - dependency-name: ember-cli
+    versions:
+    - 3.23.0
+    - 3.24.0
+  - dependency-name: ember-template-lint
+    versions:
+    - 2.15.0
+    - 2.18.0
