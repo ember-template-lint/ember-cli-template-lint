@@ -40,7 +40,7 @@ module.exports = {
     let checker = new VersionChecker(this);
     checker.for('ember-cli', 'npm').assertAbove('2.4.1');
 
-    if (type === 'templates') {
+    if (type === 'templates' || type === 'app') {
       let ui = this.ui;
       let mockConsole = {
         log(data) {
